@@ -1,0 +1,174 @@
+# Laravel & PHP
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# IDE - PhpStorm / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# IDE - Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Sistema Operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Node & NPM
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Build & Compiled Files
+/public/build/
+/public/hot/
+/public/storage/
+/bootstrap/cache/*.php
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+*.log
+
+# Testing
+/coverage/
+/.nyc_output/
+/.phpunit.cache/
+.phpunit.result.cache
+
+# Vite
+/public/hot
+/public/build
+.vite/
+
+# TypeScript
+*.tsbuildinfo
+
+# Composer
+/vendor/
+composer.phar
+composer.lock
+
+# Laravel Mix (si lo usaste antes)
+/public/css/
+/public/js/
+/public/mix-manifest.json
+
+# Archivos temporales de PHP
+*.php~
+*.php.bak
+*.php.swp
+
+# Archivos de backup de base de datos
+*.sql
+*.sqlite
+*.sqlite-journal
+
+# Archivos de configuración local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+
+# Cache de Laravel
+bootstrap/cache/services.php
+bootstrap/cache/packages.php
+bootstrap/cache/config.php
+bootstrap/cache/routes-v7.php
+
+# Archivos de scripts de prueba (como los que creamos)
+test-*.php
+create-*.php
+check-*.php
+generate-*.php
+delete-user.php
+list-users.php
+fix-*.php
+diagnose-*.php
+debug-*.php
+update-*.php
+clean-*.php
+final-*.php
+
+# Documentación temporal
+*_README.md
+!README.md
+
+# Certificados y claves
+*.pem
+*.key
+*.crt
+*.csr
+
+# Backups
+*.backup
+*.bak
+*.old
+*.orig
+
+# Archivos de configuración de servidores
+.htaccess.backup
+web.config.backup
+
+# Archivos temporales de Windows
+*.tmp
+*.temp
+
+# Archivos de sesión
+sess_*
+
+# Archivos de caché de sistemas de plantillas
+*.cache
+
+# Archivos de dependencias de paquetes
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Archivos específicos de Laragon o servidores locales
+.laragon

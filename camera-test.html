@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Cámara</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        video {
+            width: 100%;
+            max-width: 640px;
+            height: 480px;
+            background-color: #000;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background-color: #0056b3; }
+        button:disabled { background-color: #6c757d; cursor: not-allowed; }
+        .log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Test de Cámara - Diagnóstico</h1>
+        
+        <div id="status" class="status info">Iniciando test...</div>
+        
+        <video id="video" autoplay playsinline muted style="display: none;"></video>
+        
+        <div>
+            <button id="startBtn" onclick="startCamera()">Iniciar Cámara</button>
+            <button id="stopBtn" onclick="stopCamera()" disabled>Detener Cámara</button>
+            <button onclick="clearLog()">Limpiar Log</button>
+        </div>
+        
+        <div id="log" class="log"></div>
+        
+        <h3>Información del Sistema:</h3>
+        <div id="systemInfo"></div>
+    </div>
+
+    <script>
+        let stream = null;
+        const video = document.getElementById('video');
+        const status = document.getElementById('status');
+        const log = document.getElementById('log');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const systemInfo = document.getElementById('systemInfo');
+
+        function logMessage(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            logEntry.style.color = type === 'error' ? '#721c24' : 
+                                  type === 'success' ? '#155724' : 
+                                  type === 'warning' ? '#856404' : '#0c5460';
+            log.appendChild(logEntry);
+            log.scrollTop = log.scrollHeight;
+            console.log(message);
+        }
+
+        function updateStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        function updateSystemInfo() {
+            const info = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                cookieEnabled: navigator.cookieEnabled,
+                onLine: navigator.onLine,
+                mediaDevices: !!navigator.mediaDevices,
+                getUserMedia: !!navigator.mediaDevices?.getUserMedia,
+                constraints: navigator.mediaDevices?.getSupportedConstraints()
+            };
+
+            systemInfo.innerHTML = `
+                <strong>Navegador:</strong> ${info.userAgent}<br>
+                <strong>Plataforma:</strong> ${info.platform}<br>
+                <strong>Idioma:</strong> ${info.language}<br>
+                <strong>MediaDevices API:</strong> ${info.mediaDevices ? '✅ Disponible' : '❌ No disponible'}<br>
+                <strong>getUserMedia:</strong> ${info.getUserMedia ? '✅ Disponible' : '❌ No disponible'}<br>
+                <strong>Conexión:</strong> ${info.onLine ? '✅ En línea' : '❌ Sin conexión'}
+            `;
+        }
+
+        async function startCamera() {
+            try {
+                updateStatus('Solicitando acceso a la cámara...', 'warning');
+                logMessage('Iniciando solicitud de cámara...', 'info');
+                
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+
+                // Verificar soporte
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    throw new Error('getUserMedia no está soportado en este navegador');
+                }
+
+                // Solicitar acceso a la cámara
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: 'environment', // Cámara trasera
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    },
+                    audio: false
+                });
+
+                logMessage('Stream de cámara obtenido exitosamente', 'success');
+                logMessage(`Tracks: ${stream.getTracks().length}`, 'info');
+                stream.getTracks().forEach((track, index) => {
+                    logMessage(`Track ${index}: ${track.kind} - ${track.label}`, 'info');
+                });
+
+                // Configurar video
+                video.srcObject = stream;
+                video.style.display = 'block';
+
+                // Eventos del video
+                video.addEventListener('loadedmetadata', () => {
+                    logMessage('Video metadata cargada', 'success');
+                    logMessage(`Dimensiones: ${video.videoWidth}x${video.videoHeight}`, 'info');
+                });
+
+                video.addEventListener('canplay', () => {
+                    logMessage('Video listo para reproducir', 'success');
+                });
+
+                video.addEventListener('playing', () => {
+                    logMessage('Video reproduciéndose', 'success');
+                    updateStatus('Cámara funcionando correctamente ✅', 'success');
+                });
+
+                video.addEventListener('error', (e) => {
+                    logMessage(`Error en video: ${e.message || 'Error desconocido'}`, 'error');
+                    updateStatus('Error en el video', 'error');
+                });
+
+                // Intentar reproducir
+                try {
+                    await video.play();
+                    logMessage('Video.play() exitoso', 'success');
+                } catch (playError) {
+                    logMessage(`Error en video.play(): ${playError.message}`, 'error');
+                    updateStatus('Error al reproducir video', 'error');
+                }
+
+            } catch (error) {
+                logMessage(`Error al acceder a la cámara: ${error.message}`, 'error');
+                updateStatus(`Error: ${error.message}`, 'error');
+                
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                logMessage('Deteniendo stream de cámara...', 'info');
+                stream.getTracks().forEach(track => {
+                    track.stop();
+                    logMessage(`Track ${track.kind} detenido`, 'info');
+                });
+                stream = null;
+            }
+            
+            video.srcObject = null;
+            video.style.display = 'none';
+            
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            
+            updateStatus('Cámara detenida', 'info');
+            logMessage('Cámara detenida completamente', 'success');
+        }
+
+        function clearLog() {
+            log.innerHTML = '';
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            logMessage('Test de cámara iniciado', 'info');
+            updateSystemInfo();
+            
+            // Verificar HTTPS
+            if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+                updateStatus('⚠️ Se requiere HTTPS para acceder a la cámara', 'warning');
+                logMessage('ADVERTENCIA: La cámara requiere HTTPS excepto en localhost', 'warning');
+            }
+        });
+
+        // Limpiar al salir
+        window.addEventListener('beforeunload', () => {
+            stopCamera();
+        });
+    </script>
+</body>
+</html>
