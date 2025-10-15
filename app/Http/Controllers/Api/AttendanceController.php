@@ -487,6 +487,148 @@ class AttendanceController extends Controller
     }
 
     /**
+     * Registrar asistencia usando email del participante (QR simple)
+     */
+    public function checkInByEmail(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'activity_id' => 'nullable|exists:activities,id',
+            'type' => 'nullable|in:general,activity',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Datos de validación incorrectos',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            // Buscar participante por email
+            $participant = Participant::where('email', $request->email)->first();
+
+            if (!$participant) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Participante no encontrado con ese email'
+                ], 404);
+            }
+
+            if (!$participant->is_active) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Participante inactivo'
+                ], 403);
+            }
+
+            // Determinar el tipo de asistencia
+            $type = $request->type ?? 'general';
+            $activityId = $request->activity_id;
+
+            // Si es asistencia a actividad, verificar que esté registrado
+            if ($type === 'activity' && $activityId) {
+                $activity = Activity::find($activityId);
+                
+                if (!$activity) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Actividad no encontrada'
+                    ], 404);
+                }
+
+                // Verificar si el participante está registrado en la actividad
+                $isRegistered = $participant->activities()->where('activity_id', $activityId)->exists();
+                
+                if (!$isRegistered) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'El participante no está registrado en esta actividad'
+                    ], 403);
+                }
+
+                // Verificar si ya tiene asistencia registrada hoy para esta actividad
+                $existingAttendance = Attendance::where('participant_id', $participant->id)
+                    ->where('activity_id', $activityId)
+                    ->whereDate('check_in_time', today())
+                    ->first();
+
+                if ($existingAttendance) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Ya tienes asistencia registrada para esta actividad hoy',
+                        'data' => [
+                            'attendance' => $existingAttendance
+                        ]
+                    ], 409);
+                }
+            } else {
+                // Para asistencia general, usar la primera actividad disponible o null
+                $activityId = $activityId ?? Activity::where('is_active', true)->first()?->id;
+                
+                if (!$activityId) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'No hay actividades disponibles para registrar asistencia'
+                    ], 404);
+                }
+            }
+
+            // Crear registro de asistencia
+            $attendance = Attendance::create([
+                'participant_id' => $participant->id,
+                'activity_id' => $activityId,
+                'check_in_time' => now(),
+                'type' => $type,
+                'notes' => 'Check-in via QR code (email)',
+            ]);
+
+            $attendance->load(['participant', 'activity']);
+
+            Log::info('Attendance registered via email QR', [
+                'attendance_id' => $attendance->id,
+                'participant_id' => $participant->id,
+                'email' => $participant->email,
+                'activity_id' => $activityId,
+                'type' => $type
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => '¡Asistencia registrada exitosamente!',
+                'data' => [
+                    'attendance' => $attendance,
+                    'participant' => [
+                        'id' => $participant->id,
+                        'name' => $participant->first_name . ' ' . $participant->last_name,
+                        'email' => $participant->email,
+                        'type' => $participant->type,
+                    ],
+                    'activity' => $attendance->activity ? [
+                        'id' => $attendance->activity->id,
+                        'name' => $attendance->activity->name,
+                        'type' => $attendance->activity->type,
+                        'location' => $attendance->activity->location,
+                    ] : null
+                ]
+            ], 201);
+
+        } catch (\Exception $e) {
+            Log::error('Error registering attendance via email QR', [
+                'email' => $request->email,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error interno del servidor: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Generar reporte de asistencias
      */
     public function report(Request $request): JsonResponse

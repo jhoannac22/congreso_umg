@@ -172,4 +172,22 @@ class Participant extends Model
     {
         return $this->type === 'externo';
     }
+
+    /**
+     * Obtener URL del código QR para asistencia (basado en email)
+     */
+    public function getAttendanceQrCodeUrl(): string
+    {
+        // Usar QR Server API para generar QR code con el email
+        $email = urlencode($this->email);
+        return "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$email}&color=000000&bgcolor=ffffff&format=png";
+    }
+
+    /**
+     * Obtener datos para el código QR (solo email)
+     */
+    public function getQrData(): string
+    {
+        return $this->email;
+    }
 }

@@ -66,6 +66,9 @@ Route::prefix('v1')->group(function () {
     // Reportes de asistencia (público - para visualización básica)
     Route::get('/attendance/stats', [AttendanceReportController::class, 'getStats']);
     Route::get('/attendance/reports', [AttendanceReportController::class, 'getReports']);
+    
+    // Registro de asistencia por QR (email)
+    Route::post('/attendance/check-in-email', [AttendanceController::class, 'checkInByEmail']);
 });
 
 // Rutas protegidas (requieren autenticación)

@@ -57,23 +57,13 @@
 
 <!-- QR Code Card -->
 <div style="background: white; border-radius: 16px; padding: 30px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
-    <h3 style="color: #1F2937; font-size: 24px; font-weight: bold; margin: 0 0 20px; font-family: 'Playfair Display', serif;">Tu Código QR</h3>
+    <h3 style="color: #1F2937; font-size: 24px; font-weight: bold; margin: 0 0 20px; font-family: 'Playfair Display', serif;">Tu Código QR para Asistencia</h3>
     
-    @if($participant->qr_code)
     <div style="background: #F9FAFB; border-radius: 12px; padding: 20px; display: inline-block;">
-        <img src="{{ $participant->qr_code }}" alt="Código QR del participante" style="max-width: 200px; max-height: 200px; border-radius: 8px;">
+        <img src="{{ $participant->getAttendanceQrCodeUrl() }}" alt="Código QR del participante" style="max-width: 250px; max-height: 250px; border-radius: 8px;">
     </div>
     <p style="color: #6B7280; font-size: 14px; margin: 15px 0 0;">Presenta este código QR en el evento para registrar tu asistencia</p>
-    @else
-    <div style="background: #F9FAFB; border-radius: 12px; padding: 40px; display: inline-block;">
-        <div style="width: 100px; height: 100px; background: #E5E7EB; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-            <svg width="40" height="40" fill="#9CA3AF" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 1v10h10V5H5z" clipRule="evenodd"/>
-            </svg>
-        </div>
-        <p style="color: #6B7280; font-size: 14px; margin: 15px 0 0;">Código QR del participante</p>
-    </div>
-    @endif
+    <p style="color: #9CA3AF; font-size: 12px; margin: 10px 0 0;">Este código QR contiene tu email: <strong>{{ $participant->email }}</strong></p>
 </div>
 
 <!-- What's Included Section -->
