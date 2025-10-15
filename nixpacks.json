@@ -19,7 +19,7 @@
         "php83Extensions.tokenizer",
         "php83Extensions.xml",
         "php83Extensions.redis",
-        "nodejs-22_x"
+        "nodejs_22"
       ]
     },
     "install": {
