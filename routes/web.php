@@ -47,3 +47,6 @@ Route::get('/participant-dashboard', function () {
     return Inertia::render('ParticipantDashboard');
 })->name('participant-dashboard');
 
+Route::get('/qr-scanner', function () {
+    return Inertia::render('AttendanceScanner');
+})->name('qr-scanner');
