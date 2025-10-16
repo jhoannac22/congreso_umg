@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\ActivityRegistrationController::checkRegistration
- * @see app/Http/Controllers/Api/ActivityRegistrationController.php:222
+ * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
 export const checkRegistration = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ checkRegistration.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\ActivityRegistrationController::checkRegistration
- * @see app/Http/Controllers/Api/ActivityRegistrationController.php:222
+ * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
 checkRegistration.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -49,7 +49,7 @@ checkRegistration.url = (args: { activity: number | { id: number } } | [activity
 
 /**
 * @see \App\Http\Controllers\Api\ActivityRegistrationController::checkRegistration
- * @see app/Http/Controllers/Api/ActivityRegistrationController.php:222
+ * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
 checkRegistration.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -59,7 +59,7 @@ checkRegistration.post = (args: { activity: number | { id: number } } | [activit
 
     /**
 * @see \App\Http\Controllers\Api\ActivityRegistrationController::checkRegistration
- * @see app/Http/Controllers/Api/ActivityRegistrationController.php:222
+ * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
     const checkRegistrationForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -69,7 +69,7 @@ checkRegistration.post = (args: { activity: number | { id: number } } | [activit
 
             /**
 * @see \App\Http\Controllers\Api\ActivityRegistrationController::checkRegistration
- * @see app/Http/Controllers/Api/ActivityRegistrationController.php:222
+ * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
         checkRegistrationForm.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
