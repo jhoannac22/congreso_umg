@@ -405,6 +405,9 @@ class ActivityController extends Controller
             // Actualizar contador de participantes
             $activity->increment('current_participants');
 
+            // Cargar las relaciones necesarias para el email
+            $registration->load(['activity', 'participant']);
+
             // Enviar email de confirmación
             try {
                 \Mail::to($participant->email)->send(new \App\Mail\ActivityRegistrationConfirmation($registration));
