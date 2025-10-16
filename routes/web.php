@@ -4,7 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    $activities = \App\Models\Activity::with('category')
+        ->where('is_active', true)
+        ->orderBy('start_date')
+        ->limit(6)
+        ->get();
+    
+    return Inertia::render('Home', [
+        'activities' => $activities
+    ]);
 })->name('home');
 
 Route::get('/activities', function () {
