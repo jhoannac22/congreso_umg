@@ -144,6 +144,13 @@ const Navigation: React.FC<NavigationProps> = ({ showLogin = true, className = '
                     >
                         FAQ
                     </Link>
+                    <Link 
+                        href="/winners" 
+                        className="text-gray-800 hover:text-[#D4AF37] transition-colors duration-200 font-medium flex items-center gap-1"
+                    >
+                        <span>🏆</span>
+                        <span>Ganadores</span>
+                    </Link>
                     
                     {showLogin && (
                         <Button href="/login" variant="outline" size="sm">

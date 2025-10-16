@@ -58,3 +58,21 @@ Route::get('/participant-dashboard', function () {
 Route::get('/qr-scanner', function () {
     return Inertia::render('AttendanceScanner');
 })->name('qr-scanner');
+
+Route::get('/winners', function () {
+    // Obtener ganadores publicados agrupados por año y actividad
+    $winners = \App\Models\Winner::with(['participant', 'activity'])
+        ->where('is_published', true)
+        ->orderBy('year', 'desc')
+        ->orderBy('activity_id')
+        ->orderBy('position')
+        ->get();
+    
+    // Obtener años disponibles
+    $years = $winners->pluck('year')->unique()->sort()->reverse()->values();
+    
+    return Inertia::render('Winners', [
+        'winners' => $winners,
+        'years' => $years
+    ]);
+})->name('winners');
