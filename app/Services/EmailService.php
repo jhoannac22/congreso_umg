@@ -2,18 +2,54 @@
 
 namespace App\Services;
 
+use App\Mail\CongressRegistrationConfirmation;
 use App\Mail\EmailVerification;
 use App\Mail\EventReminder;
 use App\Mail\ParticipantRegistrationConfirmation;
 use App\Models\Participant;
 use App\Models\User;
+use App\Services\QRCodeService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
 class EmailService
 {
+    protected QRCodeService $qrCodeService;
+
+    public function __construct(QRCodeService $qrCodeService)
+    {
+        $this->qrCodeService = $qrCodeService;
+    }
+
     /**
-     * Enviar email de confirmación de inscripción
+     * Enviar email de confirmación de inscripción al congreso con código QR
+     */
+    public function sendCongressRegistrationConfirmation(Participant $participant): void
+    {
+        try {
+            // Generar código QR para asistencia al congreso
+            $qrCodeUrl = $this->qrCodeService->generateCongressAttendanceQr($participant);
+            
+            // Enviar email con QR
+            Mail::to($participant->email)
+                ->send(new CongressRegistrationConfirmation($participant, $qrCodeUrl));
+                
+        } catch (\Exception $e) {
+            // Log del error pero no fallar el registro
+            Log::error('Error sending congress registration confirmation email', [
+                'participant_id' => $participant->id,
+                'participant_email' => $participant->email,
+                'error' => $e->getMessage()
+            ]);
+            
+            // Enviar email básico como fallback
+            $this->sendRegistrationConfirmation($participant);
+        }
+    }
+
+    /**
+     * Enviar email de confirmación de inscripción (método original)
      */
     public function sendRegistrationConfirmation(Participant $participant): void
     {

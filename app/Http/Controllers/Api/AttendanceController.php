@@ -3,242 +3,93 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Activity;
 use App\Models\Attendance;
 use App\Models\Participant;
 use App\Models\AttendanceQrCode;
 use App\Models\QrScanner;
 use App\Models\ActivityRegistration;
-use App\Services\QrCodeService;
+use App\Services\QRCodeService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class AttendanceController extends Controller
 {
-    protected QrCodeService $qrCodeService;
+    protected QRCodeService $qrCodeService;
 
-    public function __construct(QrCodeService $qrCodeService)
+    public function __construct(QRCodeService $qrCodeService)
     {
         $this->qrCodeService = $qrCodeService;
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request): JsonResponse
-    {
-        $query = Attendance::with(['participant', 'activity']);
-
-        // Filtrar por participante
-        if ($request->has('participant_id')) {
-            $query->where('participant_id', $request->participant_id);
-        }
-
-        // Filtrar por actividad
-        if ($request->has('activity_id')) {
-            $query->where('activity_id', $request->activity_id);
-        }
-
-        // Filtrar por tipo
-        if ($request->has('type')) {
-            $query->where('type', $request->type);
-        }
-
-        // Filtrar por fecha
-        if ($request->has('date_from')) {
-            $query->whereDate('actual_check_in', '>=', $request->date_from);
-        }
-
-        if ($request->has('date_to')) {
-            $query->whereDate('actual_check_in', '<=', $request->date_to);
-        }
-
-        // Ordenar por fecha de check-in
-        $query->orderBy('actual_check_in', 'desc');
-
-        $attendances = $query->paginate(15);
-
-        return response()->json([
-            'message' => 'Asistencias obtenidas exitosamente',
-            'data' => $attendances,
-        ]);
-    }
 
     /**
-     * Store a newly created resource in storage.
+     * Registrar asistencia mediante código QR
      */
-    public function store(Request $request): JsonResponse
+    public function registerAttendance(Request $request): JsonResponse
     {
         $request->validate([
-            'participant_id' => 'required|exists:participants,id',
-            'activity_id' => 'required|exists:activities,id',
-            'type' => 'required|in:general,activity',
-            'notes' => 'nullable|string|max:1000',
-        ]);
-
-        $attendance = Attendance::create([
-            'participant_id' => $request->participant_id,
-            'activity_id' => $request->activity_id,
-            'check_in_time' => now(),
-            'type' => $request->type,
-            'notes' => $request->notes,
-        ]);
-
-        $attendance->load(['participant', 'activity']);
-
-        return response()->json([
-            'message' => 'Asistencia registrada exitosamente',
-            'data' => $attendance,
-        ], 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Attendance $attendance): JsonResponse
-    {
-        $attendance->load(['participant', 'activity']);
-
-        return response()->json([
-            'message' => 'Asistencia obtenida exitosamente',
-            'data' => $attendance,
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Attendance $attendance): JsonResponse
-    {
-        $request->validate([
-            'notes' => 'nullable|string|max:1000',
-        ]);
-
-        $attendance->update($request->only(['notes']));
-
-        return response()->json([
-            'message' => 'Asistencia actualizada exitosamente',
-            'data' => $attendance,
-        ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Attendance $attendance): JsonResponse
-    {
-        $attendance->delete();
-
-        return response()->json([
-            'message' => 'Asistencia eliminada exitosamente',
-        ]);
-    }
-
-    /**
-     * Check-in usando código QR del nuevo sistema
-     */
-    public function checkIn(Request $request): JsonResponse
-    {
-        $validator = Validator::make($request->all(), [
             'qr_data' => 'required|string',
-            'scanner_id' => 'nullable|string',
-            'scanner_location' => 'nullable|array',
+            'scanned_by' => 'nullable|string|max:255', // Quien escaneó el código
+            'location' => 'nullable|string|max:255', // Ubicación del escaneo
         ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Validation failed',
-                'errors' => $validator->errors()
-            ], 422);
-        }
 
         try {
-            // Validar el QR code
-            $validation = $this->qrCodeService->validateQrCode($request->qr_data);
+            // Validar el código QR
+            $validation = $this->qrCodeService->validateCongressAttendanceQr($request->qr_data);
 
             if (!$validation['valid']) {
                 return response()->json([
                     'success' => false,
                     'message' => $validation['error'],
-                    'error_type' => $this->getErrorType($validation['error'])
+                    'participant' => null
                 ], 400);
             }
 
-            $qrCode = $validation['qr_code'];
             $participant = $validation['participant'];
-            $activity = $validation['activity'];
 
-            // Verificar si ya tiene asistencia registrada para esta actividad
+            // Verificar si ya se registró la asistencia
             $existingAttendance = Attendance::where('participant_id', $participant->id)
-                ->where('activity_id', $activity->id)
-                ->whereDate('actual_check_in', today())
+                ->where('event_type', 'congress')
+                ->whereDate('created_at', today())
                 ->first();
 
             if ($existingAttendance) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Ya tienes asistencia registrada para esta actividad hoy',
-                    'data' => [
-                        'existing_attendance' => $existingAttendance->getSummary()
-                    ]
+                    'message' => 'La asistencia ya fue registrada para este participante hoy',
+                    'participant' => $participant,
+                    'attendance' => $existingAttendance
                 ], 409);
             }
 
-            // Verificar scanner si se proporciona
-            $scannedBy = null;
-            if ($request->scanner_id) {
-                $scanner = QrScanner::authenticateByApiKey($request->scanner_id);
-                if (!$scanner || !$scanner->canScanActivity($activity->id)) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Scanner no autorizado para esta actividad'
-                    ], 403);
-                }
-                $scannedBy = $scanner->scanner_code;
-                $scanner->recordUsage();
-            }
-
-            // Registrar asistencia
-            $attendance = Attendance::registerFromQr($qrCode, $scannedBy, $request->scanner_location);
-
-            Log::info('Attendance registered via QR scan', [
-                'attendance_id' => $attendance->id,
+            // Registrar la asistencia
+            $attendance = Attendance::create([
                 'participant_id' => $participant->id,
-                'activity_id' => $activity->id,
-                'scanner_id' => $scannedBy,
-                'qr_code_id' => $qrCode->id
+                'event_type' => 'congress',
+                'scanned_by' => $request->scanned_by ?? 'system',
+                'location' => $request->location ?? 'entrada_principal',
+                'qr_data' => $request->qr_data,
+                'status' => 'confirmed',
+                'notes' => 'Asistencia registrada mediante código QR del congreso'
+            ]);
+
+            Log::info('Congress attendance registered via QR code', [
+                'participant_id' => $participant->id,
+                'attendance_id' => $attendance->id,
+                'scanned_by' => $request->scanned_by,
+                'location' => $request->location
             ]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Asistencia registrada exitosamente',
-                'data' => [
-                    'attendance' => $attendance->getSummary(),
-                    'participant' => [
-                        'id' => $participant->id,
-                        'name' => $participant->first_name . ' ' . $participant->last_name,
-                        'email' => $participant->email,
-                        'type' => $participant->type,
-                    ],
-                    'activity' => [
-                        'id' => $activity->id,
-                        'name' => $activity->name,
-                        'type' => $activity->type,
-                        'start_date' => $activity->start_date,
-                        'end_date' => $activity->end_date,
-                        'location' => $activity->location,
-                    ],
-                    'qr_code' => [
-                        'id' => $qrCode->id,
-                        'used_at' => $qrCode->used_at,
-                    ]
-                ]
-            ], 201);
+                'participant' => $participant,
+                'attendance' => $attendance,
+                'timestamp' => $attendance->created_at->format('Y-m-d H:i:s')
+            ], 200);
 
         } catch (\Exception $e) {
-            Log::error('Error registering attendance via QR', [
+            Log::error('Error registering congress attendance', [
                 'qr_data' => $request->qr_data,
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
@@ -246,118 +97,151 @@ class AttendanceController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Error interno del servidor'
+                'message' => 'Error interno del servidor al registrar asistencia',
+                'participant' => null
             ], 500);
         }
     }
 
     /**
-     * Obtener un QR code de prueba válido
+     * Obtener estadísticas de asistencia del congreso
      */
-    public function getTestQrCode(Request $request): JsonResponse
+    public function getAttendanceStats(): JsonResponse
     {
         try {
-            // Buscar el primer QR code activo
-            $qrCode = AttendanceQrCode::where('status', 'active')
-                ->whereNull('used_at')
-                ->with(['participant', 'activity'])
-                ->first();
+            $today = today();
+            
+            $totalParticipants = Participant::where('is_active', true)->count();
+            $attendedToday = Attendance::where('event_type', 'congress')
+                ->whereDate('created_at', $today)
+                ->count();
+            
+            $attendanceRate = $totalParticipants > 0 ? round(($attendedToday / $totalParticipants) * 100, 2) : 0;
 
-            if (!$qrCode) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No active QR codes available for testing'
-                ], 404);
-            }
+            // Estadísticas por tipo de participante
+            $internalAttended = Attendance::where('event_type', 'congress')
+                ->whereDate('created_at', $today)
+                ->whereHas('participant', function($query) {
+                    $query->where('type', 'interno');
+                })
+                ->count();
+
+            $externalAttended = Attendance::where('event_type', 'congress')
+                ->whereDate('created_at', $today)
+                ->whereHas('participant', function($query) {
+                    $query->where('type', 'externo');
+                })
+                ->count();
+
+            // Asistencias por hora
+            $attendanceByHour = Attendance::where('event_type', 'congress')
+                ->whereDate('created_at', $today)
+                ->selectRaw('HOUR(created_at) as hour, COUNT(*) as count')
+                ->groupBy('hour')
+                ->orderBy('hour')
+                ->get();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Test QR code retrieved successfully',
-                'data' => [
-                    'qr_data' => $qrCode->qr_code_data,
-                    'participant' => [
-                        'name' => $qrCode->participant->first_name . ' ' . $qrCode->participant->last_name,
+                'stats' => [
+                    'date' => $today->format('Y-m-d'),
+                    'total_participants' => $totalParticipants,
+                    'attended_today' => $attendedToday,
+                    'attendance_rate' => $attendanceRate,
+                    'by_type' => [
+                        'internal' => $internalAttended,
+                        'external' => $externalAttended
                     ],
-                    'activity' => [
-                        'name' => $qrCode->activity->name,
-                    ]
+                    'by_hour' => $attendanceByHour
                 ]
             ]);
+
         } catch (\Exception $e) {
-            Log::error('Error getting test QR code', [
+            Log::error('Error getting attendance stats', [
                 'error' => $e->getMessage()
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Error getting test QR code: ' . $e->getMessage()
+                'message' => 'Error al obtener estadísticas de asistencia'
             ], 500);
         }
     }
 
     /**
-     * Validar QR code sin registrar asistencia (para preview)
+     * Obtener lista de participantes que asistieron
+     */
+    public function getAttendees(Request $request): JsonResponse
+    {
+        try {
+            $date = $request->get('date', today()->format('Y-m-d'));
+            
+            $attendances = Attendance::where('event_type', 'congress')
+                ->whereDate('created_at', $date)
+                ->with(['participant' => function($query) {
+                    $query->select('id', 'first_name', 'last_name', 'email', 'type', 'school');
+                }])
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'date' => $date,
+                'total_attendees' => $attendances->count(),
+                'attendees' => $attendances
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Error getting attendees list', [
+                'date' => $request->get('date'),
+                'error' => $e->getMessage()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al obtener lista de asistentes'
+            ], 500);
+        }
+    }
+
+    /**
+     * Validar código QR sin registrar asistencia
      */
     public function validateQrCode(Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'qr_data' => 'required|string',
+        $request->validate([
+            'qr_data' => 'required|string'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Validation failed',
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
         try {
-            $validation = $this->qrCodeService->validateQrCode($request->qr_data);
+            $validation = $this->qrCodeService->validateCongressAttendanceQr($request->qr_data);
 
             if (!$validation['valid']) {
                 return response()->json([
                     'success' => false,
                     'message' => $validation['error'],
-                    'error_type' => $this->getErrorType($validation['error'])
+                    'participant' => null
                 ], 400);
             }
 
-            $qrCode = $validation['qr_code'];
             $participant = $validation['participant'];
-            $activity = $validation['activity'];
 
-            // Verificar si ya tiene asistencia
-            $existingAttendance = Attendance::where('participant_id', $participant->id)
-                ->where('activity_id', $activity->id)
-                ->whereDate('actual_check_in', today())
-                ->first();
+            // Verificar si ya asistió hoy
+            $alreadyAttended = Attendance::where('participant_id', $participant->id)
+                ->where('event_type', 'congress')
+                ->whereDate('created_at', today())
+                ->exists();
 
             return response()->json([
                 'success' => true,
-                'message' => 'QR code válido',
-                'data' => [
+                'message' => 'Código QR válido',
                     'participant' => [
                         'id' => $participant->id,
                         'name' => $participant->first_name . ' ' . $participant->last_name,
                         'email' => $participant->email,
-                        'type' => $participant->type,
-                    ],
-                    'activity' => [
-                        'id' => $activity->id,
-                        'name' => $activity->name,
-                        'type' => $activity->type,
-                        'start_date' => $activity->start_date,
-                        'end_date' => $activity->end_date,
-                        'location' => $activity->location,
-                    ],
-                    'qr_code' => [
-                        'id' => $qrCode->id,
-                        'status' => $qrCode->status,
-                        'expires_at' => $qrCode->expires_at,
-                    ],
-                    'can_register' => !$existingAttendance,
-                    'existing_attendance' => $existingAttendance ? $existingAttendance->getSummary() : null
+                    'type' => $participant->type,
+                    'school' => $participant->school,
+                    'already_attended' => $alreadyAttended
                 ]
             ]);
 
@@ -369,10 +253,11 @@ class AttendanceController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Error interno del servidor'
+                'message' => 'Error al validar código QR'
             ], 500);
         }
     }
+<<<<<<< Updated upstream
 
     /**
      * Check-out usando código QR
@@ -925,3 +810,6 @@ class AttendanceController extends Controller
         ]);
     }
 }
+=======
+}
+>>>>>>> Stashed changes

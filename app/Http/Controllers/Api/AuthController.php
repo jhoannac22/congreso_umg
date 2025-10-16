@@ -69,26 +69,62 @@ class AuthController extends Controller
             }
         }
 
-        // Enviar email de verificación automáticamente
-        try {
-            $verificationUrl = url('/verify-email?token=' . $user->id . '&email=' . urlencode($user->email));
-            
-            // Configurar SMTP manualmente para asegurar el envío
-            config([
-                'mail.default' => 'smtp',
-                'mail.mailers.smtp.host' => 'smtp.gmail.com',
-                'mail.mailers.smtp.port' => 587,
-                'mail.mailers.smtp.username' => 'jhoannac000@gmail.com',
-                'mail.mailers.smtp.password' => 'jtiajrnjtapvcqbu',
-                'mail.mailers.smtp.encryption' => 'tls',
-                'mail.from.address' => 'jhoannac000@gmail.com',
-                'mail.from.name' => 'Congreso de Tecnología UMG',
-            ]);
-            
-            // Enviar email
-            Mail::to($user->email)->send(new EmailVerification($user, $verificationUrl));
-        } catch (\Exception $e) {
-            Log::error('Error enviando email de verificación: ' . $e->getMessage());
+        // Enviar email de confirmación con código QR para participantes
+        if ($user->role === 'participant' && isset($participant)) {
+            try {
+                // Configurar SMTP manualmente para asegurar el envío
+                config([
+                    'mail.default' => 'smtp',
+                    'mail.mailers.smtp.host' => 'smtp.gmail.com',
+                    'mail.mailers.smtp.port' => 587,
+                    'mail.mailers.smtp.username' => 'jhoannac000@gmail.com',
+                    'mail.mailers.smtp.password' => 'jtiajrnjtapvcqbu',
+                    'mail.mailers.smtp.encryption' => 'tls',
+                    'mail.from.address' => 'jhoannac000@gmail.com',
+                    'mail.from.name' => 'Congreso de Tecnología UMG',
+                ]);
+                
+                // Enviar email de confirmación con código QR
+                $this->emailService->sendCongressRegistrationConfirmation($participant);
+                
+                Log::info('Congress registration confirmation email sent', [
+                    'participant_id' => $participant->id,
+                    'email' => $participant->email
+                ]);
+                
+            } catch (\Exception $e) {
+                Log::error('Error sending congress registration confirmation email: ' . $e->getMessage());
+                
+                // Fallback: enviar email de verificación básico
+                try {
+                    $verificationUrl = url('/verify-email?token=' . $user->id . '&email=' . urlencode($user->email));
+                    Mail::to($user->email)->send(new EmailVerification($user, $verificationUrl));
+                } catch (\Exception $fallbackError) {
+                    Log::error('Error sending fallback verification email: ' . $fallbackError->getMessage());
+                }
+            }
+        } else {
+            // Para usuarios que no son participantes, enviar email de verificación normal
+            try {
+                $verificationUrl = url('/verify-email?token=' . $user->id . '&email=' . urlencode($user->email));
+                
+                // Configurar SMTP manualmente para asegurar el envío
+                config([
+                    'mail.default' => 'smtp',
+                    'mail.mailers.smtp.host' => 'smtp.gmail.com',
+                    'mail.mailers.smtp.port' => 587,
+                    'mail.mailers.smtp.username' => 'jhoannac000@gmail.com',
+                    'mail.mailers.smtp.password' => 'jtiajrnjtapvcqbu',
+                    'mail.mailers.smtp.encryption' => 'tls',
+                    'mail.from.address' => 'jhoannac000@gmail.com',
+                    'mail.from.name' => 'Congreso de Tecnología UMG',
+                ]);
+                
+                // Enviar email
+                Mail::to($user->email)->send(new EmailVerification($user, $verificationUrl));
+            } catch (\Exception $e) {
+                Log::error('Error enviando email de verificación: ' . $e->getMessage());
+            }
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;

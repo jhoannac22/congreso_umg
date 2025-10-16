@@ -69,6 +69,12 @@ Route::prefix('v1')->group(function () {
     
     // Registro de asistencia por QR (email)
     Route::post('/attendance/check-in-email', [AttendanceController::class, 'checkInByEmail']);
+    
+    // Sistema de asistencia con QR del congreso
+    Route::post('/attendance/register', [AttendanceController::class, 'registerAttendance']);
+    Route::post('/attendance/validate-qr', [AttendanceController::class, 'validateQrCode']);
+    Route::get('/attendance/stats', [AttendanceController::class, 'getAttendanceStats']);
+    Route::get('/attendance/attendees', [AttendanceController::class, 'getAttendees']);
 });
 
 // Rutas protegidas (requieren autenticación)

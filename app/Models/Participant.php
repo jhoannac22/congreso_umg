@@ -18,6 +18,9 @@ class Participant extends Model
         'school',
         'student_id',
         'qr_code',
+        'congress_qr_code_url',
+        'congress_qr_data',
+        'congress_qr_generated_at',
         'is_active',
         'email_verified',
         'email_verified_at',
@@ -27,6 +30,7 @@ class Participant extends Model
         'is_active' => 'boolean',
         'email_verified' => 'boolean',
         'email_verified_at' => 'datetime',
+        'congress_qr_generated_at' => 'datetime',
     ];
 
     /**

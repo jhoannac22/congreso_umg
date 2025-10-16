@@ -277,6 +277,137 @@ class QrCodeService
     }
 
     /**
+     * Generar QR code para asistencia al congreso (registro general)
+     */
+    public function generateCongressAttendanceQr(Participant $participant): string
+    {
+        try {
+            // Crear datos únicos para el QR de asistencia al congreso
+            $qrData = [
+                'type' => 'congress_attendance',
+                'participant_id' => $participant->id,
+                'email' => $participant->email,
+                'name' => $participant->first_name . ' ' . $participant->last_name,
+                'participant_type' => $participant->type,
+                'timestamp' => now()->timestamp,
+                'hash' => hash('sha256', $participant->email . $participant->id . config('app.key'))
+            ];
+
+            // Codificar datos como JSON
+            $qrDataString = json_encode($qrData);
+            
+            // Generar URL del QR code usando QR Server API
+            $qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?' . http_build_query([
+                'size' => '300x300',
+                'data' => $qrDataString,
+                'color' => '000000',
+                'bgcolor' => 'ffffff',
+                'format' => 'png',
+                'ecc' => 'M'
+            ]);
+
+            // Guardar en base de datos
+            $participant->update([
+                'congress_qr_code_url' => $qrUrl,
+                'congress_qr_data' => $qrDataString,
+                'congress_qr_generated_at' => now()
+            ]);
+
+            Log::info('Congress attendance QR code generated and saved', [
+                'participant_id' => $participant->id,
+                'participant_email' => $participant->email,
+                'qr_url' => $qrUrl
+            ]);
+
+            return $qrUrl;
+
+        } catch (\Exception $e) {
+            Log::error('Error generating congress attendance QR code', [
+                'participant_id' => $participant->id,
+                'error' => $e->getMessage()
+            ]);
+            
+            // Fallback: generar QR simple con email
+            return $this->generateSimpleEmailQr($participant->email);
+        }
+    }
+
+    /**
+     * Generar QR code simple con email (fallback)
+     */
+    private function generateSimpleEmailQr(string $email): string
+    {
+        return 'https://api.qrserver.com/v1/create-qr-code/?' . http_build_query([
+            'size' => '300x300',
+            'data' => $email,
+            'color' => '000000',
+            'bgcolor' => 'ffffff',
+            'format' => 'png'
+        ]);
+    }
+
+    /**
+     * Validar QR code de asistencia al congreso
+     */
+    public function validateCongressAttendanceQr(string $qrDataString): array
+    {
+        try {
+            $qrData = json_decode($qrDataString, true);
+
+            if (!$qrData || !isset($qrData['type']) || $qrData['type'] !== 'congress_attendance') {
+                return [
+                    'valid' => false,
+                    'error' => 'Invalid QR code format for congress attendance',
+                    'participant' => null
+                ];
+            }
+
+            // Verificar hash de seguridad
+            $expectedHash = hash('sha256', $qrData['email'] . $qrData['participant_id'] . config('app.key'));
+            if (!isset($qrData['hash']) || $qrData['hash'] !== $expectedHash) {
+                return [
+                    'valid' => false,
+                    'error' => 'Invalid QR code hash',
+                    'participant' => null
+                ];
+            }
+
+            // Buscar participante
+            $participant = Participant::where('id', $qrData['participant_id'])
+                ->where('email', $qrData['email'])
+                ->where('is_active', true)
+                ->first();
+
+            if (!$participant) {
+                return [
+                    'valid' => false,
+                    'error' => 'Participant not found or inactive',
+                    'participant' => null
+                ];
+            }
+
+            return [
+                'valid' => true,
+                'error' => null,
+                'participant' => $participant,
+                'qr_data' => $qrData
+            ];
+
+        } catch (\Exception $e) {
+            Log::error('Error validating congress attendance QR code', [
+                'qr_data' => $qrDataString,
+                'error' => $e->getMessage()
+            ]);
+
+            return [
+                'valid' => false,
+                'error' => 'Validation error: ' . $e->getMessage(),
+                'participant' => null
+            ];
+        }
+    }
+
+    /**
      * Limpiar QR codes expirados
      */
     public function cleanupExpiredQrCodes(): array
