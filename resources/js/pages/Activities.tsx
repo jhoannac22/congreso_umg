@@ -108,6 +108,38 @@ export default function Activities() {
                 if (!participant || !participant.id) {
                     throw new Error('Participant data is invalid or missing ID');
                 }
+
+                // Verificar si necesitamos actualizar los datos del participante
+                const userData = localStorage.getItem('user');
+                if (userData) {
+                    const user = JSON.parse(userData);
+                    console.log('Checking if participant data needs refresh for email:', user.email);
+                    
+                    // Intentar obtener los datos más recientes del servidor
+                    try {
+                        const token = localStorage.getItem('auth_token');
+                        if (token) {
+                            const response = await fetch(`/api/v1/participants/by-email/${encodeURIComponent(user.email)}`, {
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Accept': 'application/json'
+                                }
+                            });
+
+                            if (response.ok) {
+                                const freshData = await response.json();
+                                console.log('Fresh participant data from server:', freshData.data);
+                                
+                                // Actualizar localStorage con los datos frescos
+                                localStorage.setItem('participant', JSON.stringify(freshData.data));
+                                participant = freshData.data;
+                                console.log('Updated participant data in localStorage');
+                            }
+                        }
+                    } catch (refreshError) {
+                        console.warn('Could not refresh participant data, using cached data:', refreshError);
+                    }
+                }
             } catch (parseError) {
                 console.error('Error parsing participant data:', parseError);
                 setToast({
