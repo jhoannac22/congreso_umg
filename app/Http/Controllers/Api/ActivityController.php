@@ -410,17 +410,41 @@ class ActivityController extends Controller
 
             // Enviar email de confirmación
             try {
+                // Configurar SMTP para Railway si las variables de entorno no están configuradas
+                if (!env('MAIL_USERNAME') || !env('MAIL_PASSWORD')) {
+                    config([
+                        'mail.default' => 'smtp',
+                        'mail.mailers.smtp.host' => 'smtp.gmail.com',
+                        'mail.mailers.smtp.port' => 587,
+                        'mail.mailers.smtp.username' => 'jhoannac000@gmail.com',
+                        'mail.mailers.smtp.password' => 'jtiajrnjtapvcqbu',
+                        'mail.mailers.smtp.encryption' => 'tls',
+                        'mail.from.address' => 'jhoannac000@gmail.com',
+                        'mail.from.name' => 'Congreso de Tecnología UMG',
+                    ]);
+                }
+                
                 \Mail::to($participant->email)->send(new \App\Mail\ActivityRegistrationConfirmation($registration));
                 \Log::info('Email de confirmación enviado exitosamente', [
                     'participant_email' => $participant->email,
                     'activity_name' => $activity->name,
-                    'registration_id' => $registration->id
+                    'registration_id' => $registration->id,
+                    'mail_config' => [
+                        'host' => config('mail.mailers.smtp.host'),
+                        'username' => config('mail.mailers.smtp.username'),
+                        'from' => config('mail.from.address')
+                    ]
                 ]);
             } catch (\Exception $e) {
                 \Log::error('Error enviando email de confirmación: ' . $e->getMessage(), [
                     'participant_email' => $participant->email,
                     'activity_name' => $activity->name,
-                    'error_details' => $e->getTraceAsString()
+                    'error_details' => $e->getTraceAsString(),
+                    'mail_config' => [
+                        'host' => config('mail.mailers.smtp.host'),
+                        'username' => config('mail.mailers.smtp.username'),
+                        'from' => config('mail.from.address')
+                    ]
                 ]);
                 
                 // Intentar con driver log como fallback
