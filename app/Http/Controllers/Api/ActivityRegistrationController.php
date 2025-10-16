@@ -178,32 +178,36 @@ class ActivityRegistrationController extends Controller
 
             $participant = Participant::findOrFail($request->participant_id);
 
-            $activities = $participant->activities()
-                ->with('category')
-                ->wherePivotIn('status', ['registered', 'confirmed'])
+            // Buscar en activity_registrations (tabla correcta)
+            $registrations = \App\Models\ActivityRegistration::where('participant_id', $participant->id)
+                ->whereIn('status', ['registered', 'confirmed'])
+                ->with(['activity.category'])
                 ->get()
-                ->map(function ($activity) {
+                ->map(function ($registration) {
                     return [
-                        'id' => $activity->id,
-                        'name' => $activity->name,
-                        'description' => $activity->description,
-                        'type' => $activity->type,
-                        'start_date' => $activity->start_date->toISOString(),
-                        'end_date' => $activity->end_date->toISOString(),
-                        'location' => $activity->location,
-                        'instructor' => $activity->instructor,
-                        'category' => $activity->category->name,
+                        'id' => $registration->activity->id,
+                        'name' => $registration->activity->name,
+                        'description' => $registration->activity->description,
+                        'type' => $registration->activity->type,
+                        'start_date' => $registration->activity->start_date->toISOString(),
+                        'end_date' => $registration->activity->end_date->toISOString(),
+                        'location' => $registration->activity->location,
+                        'instructor' => $registration->activity->instructor,
+                        'category' => $registration->activity->category->name,
                         'registration' => [
-                            'status' => $activity->pivot->status,
-                            'registered_at' => $activity->pivot->registered_at,
-                            'notes' => $activity->pivot->notes,
+                            'id' => $registration->id,
+                            'status' => $registration->status,
+                            'registered_at' => $registration->registered_at->toISOString(),
+                            'notes' => $registration->notes,
+                            'payment_status' => $registration->payment_status,
+                            'amount_paid' => $registration->amount_paid,
                         ],
                     ];
                 });
 
             return response()->json([
                 'success' => true,
-                'data' => $activities,
+                'data' => $registrations,
             ], 200);
 
         } catch (\Exception $e) {
@@ -228,26 +232,29 @@ class ActivityRegistrationController extends Controller
 
             $participant = Participant::findOrFail($request->participant_id);
 
-            $isRegistered = $participant->isRegisteredIn($activity);
+            // Buscar en activity_registrations (tabla correcta)
+            $registration = \App\Models\ActivityRegistration::where('participant_id', $participant->id)
+                ->where('activity_id', $activity->id)
+                ->first();
 
-            $registration = null;
+            $isRegistered = $registration && in_array($registration->status, ['registered', 'confirmed']);
+
+            $registrationData = null;
             if ($isRegistered) {
-                $pivotData = $participant->activities()
-                    ->where('activity_id', $activity->id)
-                    ->first()
-                    ->pivot;
-
-                $registration = [
-                    'status' => $pivotData->status,
-                    'registered_at' => $pivotData->registered_at,
-                    'notes' => $pivotData->notes,
+                $registrationData = [
+                    'id' => $registration->id,
+                    'status' => $registration->status,
+                    'registered_at' => $registration->registered_at->toISOString(),
+                    'notes' => $registration->notes,
+                    'payment_status' => $registration->payment_status,
+                    'amount_paid' => $registration->amount_paid,
                 ];
             }
 
             return response()->json([
                 'success' => true,
                 'is_registered' => $isRegistered,
-                'registration' => $registration,
+                'registration' => $registrationData,
             ], 200);
 
         } catch (\Exception $e) {
