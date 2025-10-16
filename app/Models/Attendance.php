@@ -19,6 +19,7 @@ class Attendance extends Model
         'validation_notes',
         'expected_check_in',
         'actual_check_in',
+        'check_in_time',
         'check_out_time',
         'attendance_status',
         'minutes_late',
@@ -29,6 +30,7 @@ class Attendance extends Model
     protected $casts = [
         'actual_check_in' => 'datetime',
         'expected_check_in' => 'datetime',
+        'check_in_time' => 'datetime',
         'check_out_time' => 'datetime',
         'scanner_location' => 'array',
         'is_valid' => 'boolean',

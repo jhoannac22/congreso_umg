@@ -45,15 +45,8 @@ class Participant extends Model
         static::created(function ($participant) {
             // Actualizar QR code después de crear el participante con su ID real
             if (strpos($participant->qr_code, 'QR_') === 0) {
-                $qrData = urlencode(json_encode([
-                    'participant_id' => $participant->id,
-                    'name' => $participant->first_name . ' ' . $participant->last_name,
-                    'email' => $participant->email,
-                    'type' => $participant->type
-                ]));
-                
-                // Usar QR Server API para generar QR code negro
-                $participant->qr_code = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={$qrData}&color=000000&bgcolor=ffffff&format=png";
+                // Usar el método unificado para generar QR
+                $participant->qr_code = $participant->getAttendanceQrCodeUrl();
                 $participant->save();
             }
         });
@@ -174,20 +167,46 @@ class Participant extends Model
     }
 
     /**
-     * Obtener URL del código QR para asistencia (basado en email)
+     * Obtener URL del código QR para asistencia (con datos seguros)
      */
     public function getAttendanceQrCodeUrl(): string
     {
-        // Usar QR Server API para generar QR code con el email
-        $email = urlencode($this->email);
-        return "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$email}&color=000000&bgcolor=ffffff&format=png";
+        // Generar token único para este participante
+        $token = hash('sha256', $this->id . $this->email . config('app.key'));
+        
+        // Crear datos seguros para el QR
+        $qrData = [
+            'participant_id' => $this->id,
+            'email' => $this->email,
+            'token' => $token,
+            'timestamp' => time()
+        ];
+        
+        $encodedData = urlencode(json_encode($qrData));
+        return "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$encodedData}&color=000000&bgcolor=ffffff&format=png";
     }
 
     /**
-     * Obtener datos para el código QR (solo email)
+     * Obtener datos para el código QR (datos seguros)
      */
     public function getQrData(): string
     {
-        return $this->email;
+        $token = hash('sha256', $this->id . $this->email . config('app.key'));
+        
+        return json_encode([
+            'participant_id' => $this->id,
+            'email' => $this->email,
+            'token' => $token,
+            'timestamp' => time()
+        ]);
+    }
+
+    /**
+     * Validar token del QR
+     */
+    public function validateQrToken(string $token): bool
+    {
+        $expectedToken = hash('sha256', $this->id . $this->email . config('app.key'));
+        return hash_equals($expectedToken, $token);
     }
 }
