@@ -397,8 +397,8 @@ class ActivityController extends Controller
                 'payment_status' => $paymentStatus,
                 'payment_method' => $request->has('payment_data') ? 'card' : null,
                 'transaction_id' => $transactionId,
-                'amount_paid' => $request->has('payment_data') ? $request->payment_data['amount'] : 0,
-                'currency' => $request->has('payment_data') ? $request->payment_data['currency'] : 'GTQ',
+                'amount_paid' => $request->has('payment_data') ? ($request->payment_data['amount'] ?? 0) : 0,
+                'currency' => $request->has('payment_data') ? ($request->payment_data['currency'] ?? 'GTQ') : 'GTQ',
                 'registered_at' => now(),
             ]);
 
@@ -411,8 +411,26 @@ class ActivityController extends Controller
             // Enviar email de confirmación
             try {
                 \Mail::to($participant->email)->send(new \App\Mail\ActivityRegistrationConfirmation($registration));
+                \Log::info('Email de confirmación enviado exitosamente', [
+                    'participant_email' => $participant->email,
+                    'activity_name' => $activity->name,
+                    'registration_id' => $registration->id
+                ]);
             } catch (\Exception $e) {
-                \Log::error('Error enviando email de confirmación: ' . $e->getMessage());
+                \Log::error('Error enviando email de confirmación: ' . $e->getMessage(), [
+                    'participant_email' => $participant->email,
+                    'activity_name' => $activity->name,
+                    'error_details' => $e->getTraceAsString()
+                ]);
+                
+                // Intentar con driver log como fallback
+                try {
+                    config(['mail.default' => 'log']);
+                    \Mail::to($participant->email)->send(new \App\Mail\ActivityRegistrationConfirmation($registration));
+                    \Log::info('Email guardado en logs como fallback');
+                } catch (\Exception $e2) {
+                    \Log::error('Fallback también falló: ' . $e2->getMessage());
+                }
             }
 
             return response()->json([
