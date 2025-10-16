@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeScanType } from 'html5-qrcode';
 import Navigation from '../components/Navigation';
 
 interface ScanResult {
@@ -30,6 +30,7 @@ export default function AttendanceScanner() {
   const scannerRef = useRef<Html5Qrcode | null>(null);
   const [cameraPermission, setCameraPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt');
   const [showManualInput, setShowManualInput] = useState(false);
+  const [currentCamera, setCurrentCamera] = useState<'environment' | 'user'>('environment');
 
   // Cargar actividades disponibles
   useEffect(() => {
@@ -149,11 +150,21 @@ export default function AttendanceScanner() {
       const config = { 
         fps: 10, 
         qrbox: { width: 250, height: 250 },
-        aspectRatio: 1.0
+        aspectRatio: 1.0,
+        // Mejorar detección de QR
+        experimentalFeatures: {
+          useBarCodeDetectorIfSupported: true
+        },
+        // Configuración para mejor detección
+        rememberLastUsedCamera: true,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
       };
 
+      // Usar la cámara seleccionada
+      const cameraConfig = { facingMode: currentCamera };
+      
       await html5QrCode.start(
-        { facingMode: 'environment' },
+        cameraConfig,
         config,
         qrCodeSuccessCallback,
         undefined
@@ -188,6 +199,19 @@ export default function AttendanceScanner() {
       }
     }
     setScanning(false);
+  };
+
+  // Cambiar cámara
+  const switchCamera = async () => {
+    if (scanning) {
+      await stopScanning();
+      setCurrentCamera(currentCamera === 'environment' ? 'user' : 'environment');
+      setTimeout(() => {
+        startScanning();
+      }, 500);
+    } else {
+      setCurrentCamera(currentCamera === 'environment' ? 'user' : 'environment');
+    }
   };
 
   // Envío manual del formulario
@@ -280,6 +304,19 @@ export default function AttendanceScanner() {
                 </span>
               </button>
             )}
+            
+            <button
+              onClick={switchCamera}
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-semibold shadow-lg"
+            >
+              <span className="flex items-center">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {currentCamera === 'environment' ? 'Cámara Frontal' : 'Cámara Trasera'}
+              </span>
+            </button>
             
             <button
               onClick={() => setShowManualInput(!showManualInput)}

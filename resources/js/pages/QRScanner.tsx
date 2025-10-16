@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeScanType } from 'html5-qrcode';
 import { router } from '@inertiajs/react';
 
 interface ScanResult {
@@ -131,15 +131,38 @@ export default function QRScanner() {
       const config = { 
         fps: 10, 
         qrbox: { width: 250, height: 250 },
-        aspectRatio: 1.0
+        aspectRatio: 1.0,
+        // Mejorar detección de QR
+        experimentalFeatures: {
+          useBarCodeDetectorIfSupported: true
+        },
+        // Configuración para mejor detección
+        rememberLastUsedCamera: true,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
       };
 
-      await html5QrCode.start(
-        { facingMode: 'environment' },
-        config,
-        qrCodeSuccessCallback,
-        undefined
-      );
+      // Intentar con cámara trasera primero, luego frontal si falla
+      try {
+        await html5QrCode.start(
+          { facingMode: 'environment' },
+          config,
+          qrCodeSuccessCallback,
+          undefined
+        );
+      } catch (err: any) {
+        // Si falla con cámara trasera, intentar con frontal
+        if (err.name === 'NotAllowedError' || err.name === 'NotFoundError') {
+          console.log('Intentando con cámara frontal...');
+          await html5QrCode.start(
+            { facingMode: 'user' },
+            config,
+            qrCodeSuccessCallback,
+            undefined
+          );
+        } else {
+          throw err;
+        }
+      }
 
       setScanning(true);
       setCameraPermission('granted');
