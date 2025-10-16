@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:28
+ * @see app/Http/Controllers/Api/AttendanceController.php:29
  * @route '/api/v1/attendances'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:70
+ * @see app/Http/Controllers/Api/AttendanceController.php:71
  * @route '/api/v1/attendances'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -94,7 +94,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:70
+ * @see app/Http/Controllers/Api/AttendanceController.php:71
  * @route '/api/v1/attendances'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:70
+ * @see app/Http/Controllers/Api/AttendanceController.php:71
  * @route '/api/v1/attendances'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -113,7 +113,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:70
+ * @see app/Http/Controllers/Api/AttendanceController.php:71
  * @route '/api/v1/attendances'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:70
+ * @see app/Http/Controllers/Api/AttendanceController.php:71
  * @route '/api/v1/attendances'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -134,7 +134,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
 export const show = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -149,7 +149,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
 show.url = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -182,7 +182,7 @@ show.url = (args: { attendance: number | { id: number } } | [attendance: number 
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
 show.get = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -191,7 +191,7 @@ show.get = (args: { attendance: number | { id: number } } | [attendance: number 
 })
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
 show.head = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -201,7 +201,7 @@ show.head = (args: { attendance: number | { id: number } } | [attendance: number
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
     const showForm = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -211,7 +211,7 @@ show.head = (args: { attendance: number | { id: number } } | [attendance: number
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
         showForm.get = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -220,7 +220,7 @@ show.head = (args: { attendance: number | { id: number } } | [attendance: number
         })
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:98
+ * @see app/Http/Controllers/Api/AttendanceController.php:99
  * @route '/api/v1/attendances/{attendance}'
  */
         showForm.head = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -236,7 +236,7 @@ show.head = (args: { attendance: number | { id: number } } | [attendance: number
     show.form = showForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
 export const update = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -251,7 +251,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
 update.url = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -284,7 +284,7 @@ update.url = (args: { attendance: number | { id: number } } | [attendance: numbe
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
 update.put = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -293,7 +293,7 @@ update.put = (args: { attendance: number | { id: number } } | [attendance: numbe
 })
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
 update.patch = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -303,7 +303,7 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
     const updateForm = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -318,7 +318,7 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
         updateForm.put = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -332,7 +332,7 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
         })
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:111
+ * @see app/Http/Controllers/Api/AttendanceController.php:112
  * @route '/api/v1/attendances/{attendance}'
  */
         updateForm.patch = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -348,7 +348,7 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:128
+ * @see app/Http/Controllers/Api/AttendanceController.php:129
  * @route '/api/v1/attendances/{attendance}'
  */
 export const destroy = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -363,7 +363,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:128
+ * @see app/Http/Controllers/Api/AttendanceController.php:129
  * @route '/api/v1/attendances/{attendance}'
  */
 destroy.url = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -396,7 +396,7 @@ destroy.url = (args: { attendance: number | { id: number } } | [attendance: numb
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:128
+ * @see app/Http/Controllers/Api/AttendanceController.php:129
  * @route '/api/v1/attendances/{attendance}'
  */
 destroy.delete = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -406,7 +406,7 @@ destroy.delete = (args: { attendance: number | { id: number } } | [attendance: n
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:128
+ * @see app/Http/Controllers/Api/AttendanceController.php:129
  * @route '/api/v1/attendances/{attendance}'
  */
     const destroyForm = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -421,7 +421,7 @@ destroy.delete = (args: { attendance: number | { id: number } } | [attendance: n
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:128
+ * @see app/Http/Controllers/Api/AttendanceController.php:129
  * @route '/api/v1/attendances/{attendance}'
  */
         destroyForm.delete = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

@@ -206,7 +206,27 @@ class Participant extends Model
      */
     public function validateQrToken(string $token): bool
     {
+        // Validar contra el token actual
         $expectedToken = hash('sha256', $this->id . $this->email . config('app.key'));
-        return hash_equals($expectedToken, $token);
+        if (hash_equals($expectedToken, $token)) {
+            return true;
+        }
+        
+        // Validar contra el token almacenado en qr_code (compatibilidad)
+        if ($this->qr_code) {
+            // Extraer el token del QR almacenado
+            $qrUrl = $this->qr_code;
+            if (preg_match('/data=([^&]+)/', $qrUrl, $matches)) {
+                $decodedData = urldecode($matches[1]);
+                $qrData = json_decode($decodedData, true);
+                if ($qrData && isset($qrData['token'])) {
+                    if (hash_equals($qrData['token'], $token)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
     }
 }

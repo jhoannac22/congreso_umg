@@ -871,12 +871,3 @@ destroy.delete = (args: { winner: number | { id: number } } | [winner: number | 
         })
     
     destroy.form = destroyForm
-const winners = {
-    index: Object.assign(index, index),
-store: Object.assign(store, store),
-show: Object.assign(show, show),
-update: Object.assign(update, update),
-destroy: Object.assign(destroy, destroy),
-}
-
-export default winners
