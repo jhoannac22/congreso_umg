@@ -165,9 +165,16 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
+        // Buscar el participante si el usuario es participante
+        $participant = null;
+        if ($user->role === 'participant') {
+            $participant = Participant::where('email', $user->email)->first();
+        }
+
         return response()->json([
             'message' => 'Inicio de sesión exitoso',
             'user' => $user,
+            'participant' => $participant,
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);

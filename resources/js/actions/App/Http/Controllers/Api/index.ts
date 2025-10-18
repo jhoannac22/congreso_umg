@@ -11,6 +11,7 @@ import AttendanceController from './AttendanceController'
 import QrCodeController from './QrCodeController'
 import DiplomaController from './DiplomaController'
 import WinnerController from './WinnerController'
+import DashboardController from './DashboardController'
 const Api = {
     AuthController: Object.assign(AuthController, AuthController),
 EmailController: Object.assign(EmailController, EmailController),
@@ -25,6 +26,7 @@ AttendanceController: Object.assign(AttendanceController, AttendanceController),
 QrCodeController: Object.assign(QrCodeController, QrCodeController),
 DiplomaController: Object.assign(DiplomaController, DiplomaController),
 WinnerController: Object.assign(WinnerController, WinnerController),
+DashboardController: Object.assign(DashboardController, DashboardController),
 }
 
 export default Api

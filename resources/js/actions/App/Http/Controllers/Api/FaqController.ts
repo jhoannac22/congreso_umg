@@ -1,4 +1,5 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\FaqController::index
  * @see app/Http/Controllers/Api/FaqController.php:15
@@ -166,7 +167,7 @@ export const index = {
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-const show378a1e538ff45eee80e2435f0bba8a35 = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+const show378a1e538ff45eee80e2435f0bba8a35 = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show378a1e538ff45eee80e2435f0bba8a35.url(args, options),
     method: 'get',
 })
@@ -181,7 +182,7 @@ show378a1e538ff45eee80e2435f0bba8a35.definition = {
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-show378a1e538ff45eee80e2435f0bba8a35.url = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show378a1e538ff45eee80e2435f0bba8a35.url = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { faq: args }
     }
@@ -214,7 +215,7 @@ show378a1e538ff45eee80e2435f0bba8a35.url = (args: { faq: number | { id: number }
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-show378a1e538ff45eee80e2435f0bba8a35.get = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show378a1e538ff45eee80e2435f0bba8a35.get = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show378a1e538ff45eee80e2435f0bba8a35.url(args, options),
     method: 'get',
 })
@@ -223,7 +224,7 @@ show378a1e538ff45eee80e2435f0bba8a35.get = (args: { faq: number | { id: number }
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-show378a1e538ff45eee80e2435f0bba8a35.head = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show378a1e538ff45eee80e2435f0bba8a35.head = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show378a1e538ff45eee80e2435f0bba8a35.url(args, options),
     method: 'head',
 })
@@ -233,7 +234,7 @@ show378a1e538ff45eee80e2435f0bba8a35.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-    const show378a1e538ff45eee80e2435f0bba8a35Form = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const show378a1e538ff45eee80e2435f0bba8a35Form = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show378a1e538ff45eee80e2435f0bba8a35.url(args, options),
         method: 'get',
     })
@@ -243,7 +244,7 @@ show378a1e538ff45eee80e2435f0bba8a35.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-        show378a1e538ff45eee80e2435f0bba8a35Form.get = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        show378a1e538ff45eee80e2435f0bba8a35Form.get = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show378a1e538ff45eee80e2435f0bba8a35.url(args, options),
             method: 'get',
         })
@@ -252,7 +253,7 @@ show378a1e538ff45eee80e2435f0bba8a35.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/faqs/{faq}'
  */
-        show378a1e538ff45eee80e2435f0bba8a35Form.head = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        show378a1e538ff45eee80e2435f0bba8a35Form.head = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show378a1e538ff45eee80e2435f0bba8a35.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -268,7 +269,7 @@ show378a1e538ff45eee80e2435f0bba8a35.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-const show959f93f0f1f01e2759f8fe9ffbbe2fa4 = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+const show959f93f0f1f01e2759f8fe9ffbbe2fa4 = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show959f93f0f1f01e2759f8fe9ffbbe2fa4.url(args, options),
     method: 'get',
 })
@@ -283,7 +284,7 @@ show959f93f0f1f01e2759f8fe9ffbbe2fa4.definition = {
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-show959f93f0f1f01e2759f8fe9ffbbe2fa4.url = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show959f93f0f1f01e2759f8fe9ffbbe2fa4.url = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { faq: args }
     }
@@ -316,7 +317,7 @@ show959f93f0f1f01e2759f8fe9ffbbe2fa4.url = (args: { faq: number | { id: number }
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-show959f93f0f1f01e2759f8fe9ffbbe2fa4.get = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show959f93f0f1f01e2759f8fe9ffbbe2fa4.get = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show959f93f0f1f01e2759f8fe9ffbbe2fa4.url(args, options),
     method: 'get',
 })
@@ -325,7 +326,7 @@ show959f93f0f1f01e2759f8fe9ffbbe2fa4.get = (args: { faq: number | { id: number }
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-show959f93f0f1f01e2759f8fe9ffbbe2fa4.head = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show959f93f0f1f01e2759f8fe9ffbbe2fa4.head = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show959f93f0f1f01e2759f8fe9ffbbe2fa4.url(args, options),
     method: 'head',
 })
@@ -335,7 +336,7 @@ show959f93f0f1f01e2759f8fe9ffbbe2fa4.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-    const show959f93f0f1f01e2759f8fe9ffbbe2fa4Form = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const show959f93f0f1f01e2759f8fe9ffbbe2fa4Form = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show959f93f0f1f01e2759f8fe9ffbbe2fa4.url(args, options),
         method: 'get',
     })
@@ -345,7 +346,7 @@ show959f93f0f1f01e2759f8fe9ffbbe2fa4.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-        show959f93f0f1f01e2759f8fe9ffbbe2fa4Form.get = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        show959f93f0f1f01e2759f8fe9ffbbe2fa4Form.get = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show959f93f0f1f01e2759f8fe9ffbbe2fa4.url(args, options),
             method: 'get',
         })
@@ -354,7 +355,7 @@ show959f93f0f1f01e2759f8fe9ffbbe2fa4.head = (args: { faq: number | { id: number 
  * @see app/Http/Controllers/Api/FaqController.php:78
  * @route '/api/v1/admin/faqs/{faq}'
  */
-        show959f93f0f1f01e2759f8fe9ffbbe2fa4Form.head = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        show959f93f0f1f01e2759f8fe9ffbbe2fa4Form.head = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show959f93f0f1f01e2759f8fe9ffbbe2fa4.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -431,7 +432,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-export const update = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -446,7 +447,7 @@ update.definition = {
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-update.url = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { faq: args }
     }
@@ -479,7 +480,7 @@ update.url = (args: { faq: number | { id: number } } | [faq: number | { id: numb
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-update.put = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -488,7 +489,7 @@ update.put = (args: { faq: number | { id: number } } | [faq: number | { id: numb
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-update.patch = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
@@ -498,7 +499,7 @@ update.patch = (args: { faq: number | { id: number } } | [faq: number | { id: nu
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-    const updateForm = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -513,7 +514,7 @@ update.patch = (args: { faq: number | { id: number } } | [faq: number | { id: nu
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-        updateForm.put = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -527,7 +528,7 @@ update.patch = (args: { faq: number | { id: number } } | [faq: number | { id: nu
  * @see app/Http/Controllers/Api/FaqController.php:89
  * @route '/api/v1/admin/faqs/{faq}'
  */
-        updateForm.patch = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -543,7 +544,7 @@ update.patch = (args: { faq: number | { id: number } } | [faq: number | { id: nu
  * @see app/Http/Controllers/Api/FaqController.php:112
  * @route '/api/v1/admin/faqs/{faq}'
  */
-export const destroy = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -558,7 +559,7 @@ destroy.definition = {
  * @see app/Http/Controllers/Api/FaqController.php:112
  * @route '/api/v1/admin/faqs/{faq}'
  */
-destroy.url = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { faq: args }
     }
@@ -591,7 +592,7 @@ destroy.url = (args: { faq: number | { id: number } } | [faq: number | { id: num
  * @see app/Http/Controllers/Api/FaqController.php:112
  * @route '/api/v1/admin/faqs/{faq}'
  */
-destroy.delete = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -601,7 +602,7 @@ destroy.delete = (args: { faq: number | { id: number } } | [faq: number | { id: 
  * @see app/Http/Controllers/Api/FaqController.php:112
  * @route '/api/v1/admin/faqs/{faq}'
  */
-    const destroyForm = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -616,7 +617,7 @@ destroy.delete = (args: { faq: number | { id: number } } | [faq: number | { id: 
  * @see app/Http/Controllers/Api/FaqController.php:112
  * @route '/api/v1/admin/faqs/{faq}'
  */
-        destroyForm.delete = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',
@@ -632,7 +633,7 @@ destroy.delete = (args: { faq: number | { id: number } } | [faq: number | { id: 
  * @see app/Http/Controllers/Api/FaqController.php:124
  * @route '/api/v1/admin/faqs/{faq}/toggle-status'
  */
-export const toggleStatus = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const toggleStatus = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: toggleStatus.url(args, options),
     method: 'patch',
 })
@@ -647,7 +648,7 @@ toggleStatus.definition = {
  * @see app/Http/Controllers/Api/FaqController.php:124
  * @route '/api/v1/admin/faqs/{faq}/toggle-status'
  */
-toggleStatus.url = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+toggleStatus.url = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { faq: args }
     }
@@ -680,7 +681,7 @@ toggleStatus.url = (args: { faq: number | { id: number } } | [faq: number | { id
  * @see app/Http/Controllers/Api/FaqController.php:124
  * @route '/api/v1/admin/faqs/{faq}/toggle-status'
  */
-toggleStatus.patch = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+toggleStatus.patch = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: toggleStatus.url(args, options),
     method: 'patch',
 })
@@ -690,7 +691,7 @@ toggleStatus.patch = (args: { faq: number | { id: number } } | [faq: number | { 
  * @see app/Http/Controllers/Api/FaqController.php:124
  * @route '/api/v1/admin/faqs/{faq}/toggle-status'
  */
-    const toggleStatusForm = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const toggleStatusForm = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: toggleStatus.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PATCH',
@@ -705,7 +706,7 @@ toggleStatus.patch = (args: { faq: number | { id: number } } | [faq: number | { 
  * @see app/Http/Controllers/Api/FaqController.php:124
  * @route '/api/v1/admin/faqs/{faq}/toggle-status'
  */
-        toggleStatusForm.patch = (args: { faq: number | { id: number } } | [faq: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        toggleStatusForm.patch = (args: { faq: string | number | { id: string | number } } | [faq: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: toggleStatus.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',

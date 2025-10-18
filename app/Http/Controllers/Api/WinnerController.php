@@ -7,6 +7,8 @@ use App\Models\Activity;
 use App\Models\Winner;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class WinnerController extends Controller
 {
@@ -61,7 +63,7 @@ class WinnerController extends Controller
             'position' => 'required|integer|min:1|max:10',
             'project_name' => 'nullable|string|max:255',
             'project_description' => 'nullable|string|max:2000',
-            'project_image' => 'nullable|string|max:500',
+            'project_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120', // 5MB max
             'judges_notes' => 'nullable|string|max:1000',
             'score' => 'nullable|numeric|min:0|max:100',
             'year' => 'required|integer|min:2020|max:' . (date('Y') + 1),
@@ -80,7 +82,17 @@ class WinnerController extends Controller
             ], 422);
         }
 
-        $winner = Winner::create($request->all());
+        $data = $request->except('project_image');
+        
+        // Procesar imagen si se envió
+        if ($request->hasFile('project_image')) {
+            $image = $request->file('project_image');
+            $filename = 'winners/' . Str::random(20) . '.' . $image->getClientOriginalExtension();
+            Storage::disk('public')->put($filename, file_get_contents($image));
+            $data['project_image'] = $filename;
+        }
+
+        $winner = Winner::create($data);
         $winner->load(['participant', 'activity']);
 
         return response()->json([
@@ -111,13 +123,28 @@ class WinnerController extends Controller
             'position' => 'sometimes|required|integer|min:1|max:10',
             'project_name' => 'sometimes|nullable|string|max:255',
             'project_description' => 'sometimes|nullable|string|max:2000',
-            'project_image' => 'sometimes|nullable|string|max:500',
+            'project_image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'judges_notes' => 'sometimes|nullable|string|max:1000',
             'score' => 'sometimes|nullable|numeric|min:0|max:100',
             'is_published' => 'sometimes|boolean',
         ]);
 
-        $winner->update($request->all());
+        $data = $request->except('project_image');
+        
+        // Procesar nueva imagen si se envió
+        if ($request->hasFile('project_image')) {
+            // Eliminar imagen anterior si existe
+            if ($winner->project_image && Storage::disk('public')->exists($winner->project_image)) {
+                Storage::disk('public')->delete($winner->project_image);
+            }
+            
+            $image = $request->file('project_image');
+            $filename = 'winners/' . Str::random(20) . '.' . $image->getClientOriginalExtension();
+            Storage::disk('public')->put($filename, file_get_contents($image));
+            $data['project_image'] = $filename;
+        }
+
+        $winner->update($data);
         $winner->load(['participant', 'activity']);
 
         return response()->json([
@@ -131,6 +158,11 @@ class WinnerController extends Controller
      */
     public function destroy(Winner $winner): JsonResponse
     {
+        // Eliminar imagen si existe
+        if ($winner->project_image && Storage::disk('public')->exists($winner->project_image)) {
+            Storage::disk('public')->delete($winner->project_image);
+        }
+        
         $winner->delete();
 
         return response()->json([

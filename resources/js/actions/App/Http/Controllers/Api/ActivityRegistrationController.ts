@@ -4,7 +4,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
-export const checkRegistration = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const checkRegistration = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: checkRegistration.url(args, options),
     method: 'post',
 })
@@ -19,7 +19,7 @@ checkRegistration.definition = {
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
-checkRegistration.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+checkRegistration.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -52,7 +52,7 @@ checkRegistration.url = (args: { activity: number | { id: number } } | [activity
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
-checkRegistration.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+checkRegistration.post = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: checkRegistration.url(args, options),
     method: 'post',
 })
@@ -62,7 +62,7 @@ checkRegistration.post = (args: { activity: number | { id: number } } | [activit
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
-    const checkRegistrationForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const checkRegistrationForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: checkRegistration.url(args, options),
         method: 'post',
     })
@@ -72,7 +72,7 @@ checkRegistration.post = (args: { activity: number | { id: number } } | [activit
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:226
  * @route '/api/v1/activities/{activity}/check-registration'
  */
-        checkRegistrationForm.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        checkRegistrationForm.post = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: checkRegistration.url(args, options),
             method: 'post',
         })
@@ -161,7 +161,7 @@ myActivities.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:119
  * @route '/api/v1/activities/{activity}/cancel'
  */
-export const cancel = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const cancel = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: cancel.url(args, options),
     method: 'post',
 })
@@ -176,7 +176,7 @@ cancel.definition = {
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:119
  * @route '/api/v1/activities/{activity}/cancel'
  */
-cancel.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+cancel.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -209,7 +209,7 @@ cancel.url = (args: { activity: number | { id: number } } | [activity: number | 
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:119
  * @route '/api/v1/activities/{activity}/cancel'
  */
-cancel.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+cancel.post = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: cancel.url(args, options),
     method: 'post',
 })
@@ -219,7 +219,7 @@ cancel.post = (args: { activity: number | { id: number } } | [activity: number |
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:119
  * @route '/api/v1/activities/{activity}/cancel'
  */
-    const cancelForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const cancelForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: cancel.url(args, options),
         method: 'post',
     })
@@ -229,7 +229,7 @@ cancel.post = (args: { activity: number | { id: number } } | [activity: number |
  * @see app/Http/Controllers/Api/ActivityRegistrationController.php:119
  * @route '/api/v1/activities/{activity}/cancel'
  */
-        cancelForm.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        cancelForm.post = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: cancel.url(args, options),
             method: 'post',
         })

@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Diploma;
 use App\Models\Participant;
+use App\Models\Winner;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -205,7 +209,7 @@ class DiplomaController extends Controller
      */
     public function download(Diploma $diploma)
     {
-        if (!$diploma->pdf_path || !Storage::exists($diploma->pdf_path)) {
+        if (!$diploma->pdf_path || !Storage::disk('public')->exists($diploma->pdf_path)) {
             return response()->json([
                 'message' => 'El archivo del diploma no existe',
             ], 404);
@@ -214,7 +218,11 @@ class DiplomaController extends Controller
         $diploma->load(['participant', 'activity']);
         $filename = "diploma_{$diploma->participant->first_name}_{$diploma->participant->last_name}_{$diploma->activity->name}.pdf";
 
-        return Storage::download($diploma->pdf_path, $filename);
+        return response()->download(
+            storage_path('app/public/' . $diploma->pdf_path),
+            $filename,
+            ['Content-Type' => 'application/pdf']
+        );
     }
 
     /**
@@ -230,6 +238,120 @@ class DiplomaController extends Controller
         return response()->json([
             'message' => 'Diploma marcado como enviado exitosamente',
             'data' => $diploma,
+        ]);
+    }
+    
+    /**
+     * Enviar diploma por email
+     */
+    public function sendByEmail(Diploma $diploma): JsonResponse
+    {
+        try {
+            $diploma->load(['participant', 'activity']);
+            
+            // Verificar que el PDF exista
+            if (!$diploma->pdf_path || !Storage::disk('public')->exists($diploma->pdf_path)) {
+                return response()->json([
+                    'message' => 'El diploma aún no ha sido generado',
+                ], 404);
+            }
+            
+            // Enviar email con el diploma adjunto
+            Mail::to($diploma->participant->email)->send(
+                new \App\Mail\DiplomaReady($diploma)
+            );
+            
+            // Marcar como enviado
+            $diploma->update([
+                'is_sent' => true,
+                'sent_at' => now(),
+            ]);
+            
+            return response()->json([
+                'message' => 'Diploma enviado exitosamente al correo ' . $diploma->participant->email,
+                'data' => $diploma,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al enviar el diploma: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+    
+    /**
+     * Generar diplomas masivamente para una actividad
+     */
+    public function generateBulkForActivity(Request $request, Activity $activity): JsonResponse
+    {
+        $request->validate([
+            'template_type' => 'sometimes|in:participation,winner,special',
+            'issue_date' => 'sometimes|date',
+        ]);
+        
+        $activity->load('participants');
+        $templateType = $request->input('template_type', 'participation');
+        $issueDate = $request->input('issue_date', now()->toDateString());
+        
+        $generated = 0;
+        $skipped = 0;
+        $errors = [];
+        
+        foreach ($activity->participants as $participant) {
+            try {
+                // Verificar si ya existe un diploma
+                $existing = Diploma::where('participant_id', $participant->id)
+                    ->where('activity_id', $activity->id)
+                    ->first();
+                    
+                if ($existing) {
+                    $skipped++;
+                    continue;
+                }
+                
+                // Crear el diploma
+                $diploma = Diploma::create([
+                    'participant_id' => $participant->id,
+                    'activity_id' => $activity->id,
+                    'diploma_number' => $this->generateDiplomaNumber(),
+                    'template_type' => $templateType,
+                    'pdf_path' => '',
+                    'issue_date' => $issueDate,
+                ]);
+                
+                // Generar el PDF
+                $pdfPath = $this->generateDiplomaPdf($diploma);
+                $diploma->update(['pdf_path' => $pdfPath]);
+                
+                $generated++;
+            } catch (\Exception $e) {
+                $errors[] = "Error con participante {$participant->id}: " . $e->getMessage();
+            }
+        }
+        
+        return response()->json([
+            'message' => "Generación masiva completada",
+            'data' => [
+                'generated' => $generated,
+                'skipped' => $skipped,
+                'errors' => $errors,
+                'total_participants' => $activity->participants->count(),
+            ],
+        ]);
+    }
+    
+    /**
+     * Obtener diplomas de un participante
+     */
+    public function getParticipantDiplomas(Participant $participant): JsonResponse
+    {
+        $diplomas = Diploma::where('participant_id', $participant->id)
+            ->with('activity')
+            ->orderBy('issue_date', 'desc')
+            ->get();
+            
+        return response()->json([
+            'message' => 'Diplomas del participante obtenidos exitosamente',
+            'data' => $diplomas,
         ]);
     }
 
@@ -251,61 +373,158 @@ class DiplomaController extends Controller
     private function generateDiplomaPdf(Diploma $diploma): string
     {
         $diploma->load(['participant', 'activity']);
-
-        // Crear contenido HTML del diploma
-        $html = $this->generateDiplomaHtml($diploma);
-
-        // Por ahora, guardamos el HTML como placeholder
-        // En una implementación real, usarías una librería como DomPDF o TCPDF
-        $filename = 'diplomas/' . $diploma->diploma_number . '.html';
-        Storage::put($filename, $html);
-
+        
+        // Preparar datos para la vista
+        $data = $this->prepareDiplomaData($diploma);
+        
+        // Seleccionar la vista según el tipo de plantilla
+        $viewName = match($diploma->template_type) {
+            'winner' => 'diplomas.winner',
+            'special' => 'diplomas.special',
+            default => 'diplomas.participation'
+        };
+        
+        // Generar PDF usando DomPDF
+        $pdf = Pdf::loadView($viewName, $data);
+        
+        // Configurar el PDF
+        $pdf->setPaper('A4', 'landscape');
+        
+        // Definir nombre de archivo
+        $filename = 'diplomas/' . $diploma->diploma_number . '.pdf';
+        
+        // Guardar el PDF en el disco público
+        Storage::disk('public')->put($filename, $pdf->output());
+        
         return $filename;
     }
-
+    
     /**
-     * Generar HTML del diploma
+     * Preparar datos para el diploma según su tipo
      */
-    private function generateDiplomaHtml(Diploma $diploma): string
+    private function prepareDiplomaData(Diploma $diploma): array
     {
-        $participant = $diploma->participant;
-        $activity = $diploma->activity;
-
-        return "
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset='UTF-8'>
-            <title>Diploma - {$activity->name}</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 0; padding: 40px; }
-                .diploma { border: 3px solid #3B82F6; padding: 60px; text-align: center; }
-                .title { font-size: 36px; color: #3B82F6; margin-bottom: 30px; }
-                .subtitle { font-size: 24px; color: #666; margin-bottom: 40px; }
-                .participant-name { font-size: 32px; font-weight: bold; color: #1F2937; margin: 30px 0; }
-                .activity-name { font-size: 20px; color: #4B5563; margin: 20px 0; }
-                .date { font-size: 16px; color: #6B7280; margin-top: 40px; }
-                .signature { margin-top: 60px; }
-            </style>
-        </head>
-        <body>
-            <div class='diploma'>
-                <div class='title'>DIPLOMA DE PARTICIPACIÓN</div>
-                <div class='subtitle'>Congreso de Tecnología UMG</div>
+        $data = [
+            'diploma' => $diploma,
+            'participant' => $diploma->participant,
+            'activity' => $diploma->activity,
+        ];
+        
+        // Si es un diploma de ganador, buscar información del ganador
+        if ($diploma->template_type === 'winner') {
+            $winner = Winner::where('participant_id', $diploma->participant_id)
+                ->where('activity_id', $diploma->activity_id)
+                ->first();
                 
-                <div class='participant-name'>{$participant->first_name} {$participant->last_name}</div>
-                
-                <div>Por haber participado exitosamente en</div>
-                <div class='activity-name'>{$activity->name}</div>
-                
-                <div class='date'>Emitido el {$diploma->issue_date->format('d/m/Y')}</div>
-                
-                <div class='signature'>
-                    <div>_________________________</div>
-                    <div>Coordinador General</div>
-                </div>
-            </div>
-        </body>
-        </html>";
+            if ($winner) {
+                $data['position'] = $winner->position;
+                $data['projectName'] = $winner->project_name;
+                $data['score'] = $winner->score;
+            }
+        }
+        
+        // Si es un diploma especial, incluir notas
+        if ($diploma->template_type === 'special' && $diploma->notes) {
+            $data['notes'] = $diploma->notes;
+            $data['specialTitle'] = 'Reconocimiento Especial';
+        }
+        
+        return $data;
+    }
+    
+    /**
+     * Obtener estadísticas de diplomas
+     */
+    public function getStats(): JsonResponse
+    {
+        try {
+            $stats = [
+                'total' => Diploma::count(),
+                'sent' => Diploma::where('is_sent', true)->count(),
+                'pending' => Diploma::where('is_sent', false)->count(),
+                'by_type' => [
+                    'participation' => Diploma::where('template_type', 'participation')->count(),
+                    'winner' => Diploma::where('template_type', 'winner')->count(),
+                    'special' => Diploma::where('template_type', 'special')->count(),
+                ],
+                'recent' => Diploma::with(['participant', 'activity'])
+                    ->orderBy('created_at', 'desc')
+                    ->limit(5)
+                    ->get(),
+            ];
+            
+            return response()->json([
+                'message' => 'Estadísticas obtenidas exitosamente',
+                'data' => $stats,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error getting diploma stats', [
+                'error' => $e->getMessage()
+            ]);
+            
+            return response()->json([
+                'message' => 'Error al obtener estadísticas',
+            ], 500);
+        }
+    }
+    
+    /**
+     * Enviar diplomas masivamente por email
+     */
+    public function sendBulkEmails(Request $request): JsonResponse
+    {
+        $request->validate([
+            'diploma_ids' => 'required|array',
+            'diploma_ids.*' => 'exists:diplomas,id'
+        ]);
+        
+        try {
+            $sent = 0;
+            $errors = [];
+            
+            foreach ($request->diploma_ids as $diplomaId) {
+                try {
+                    $diploma = Diploma::with(['participant', 'activity'])->find($diplomaId);
+                    
+                    // Verificar que el PDF existe
+                    if (!$diploma->pdf_path || !Storage::disk('public')->exists($diploma->pdf_path)) {
+                        $errors[] = "Diploma {$diploma->diploma_number}: PDF no generado";
+                        continue;
+                    }
+                    
+                    // Enviar email
+                    Mail::to($diploma->participant->email)->send(
+                        new \App\Mail\DiplomaReady($diploma)
+                    );
+                    
+                    // Marcar como enviado
+                    $diploma->update([
+                        'is_sent' => true,
+                        'sent_at' => now(),
+                    ]);
+                    
+                    $sent++;
+                } catch (\Exception $e) {
+                    $errors[] = "Diploma {$diplomaId}: " . $e->getMessage();
+                }
+            }
+            
+            return response()->json([
+                'message' => 'Envío masivo completado',
+                'data' => [
+                    'sent' => $sent,
+                    'errors' => $errors,
+                    'total' => count($request->diploma_ids),
+                ],
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error in bulk email sending', [
+                'error' => $e->getMessage()
+            ]);
+            
+            return response()->json([
+                'message' => 'Error al enviar emails masivos',
+            ], 500);
+        }
     }
 }

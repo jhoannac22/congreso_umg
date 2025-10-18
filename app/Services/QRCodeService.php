@@ -307,11 +307,10 @@ class QrCodeService
             ]);
 
             // Guardar en base de datos
-            $participant->update([
-                'congress_qr_code_url' => $qrUrl,
-                'congress_qr_data' => $qrDataString,
-                'congress_qr_generated_at' => now()
-            ]);
+            $participant->congress_qr_code_url = $qrUrl;
+            $participant->congress_qr_data = $qrDataString;
+            $participant->congress_qr_generated_at = now();
+            $participant->save();
 
             Log::info('Congress attendance QR code generated and saved', [
                 'participant_id' => $participant->id,
@@ -354,44 +353,70 @@ class QrCodeService
         try {
             $qrData = json_decode($qrDataString, true);
 
-            if (!$qrData || !isset($qrData['type']) || $qrData['type'] !== 'congress_attendance') {
+            // Verificar si es el formato nuevo con type: 'congress_attendance'
+            if ($qrData && isset($qrData['type']) && $qrData['type'] === 'congress_attendance') {
+                // Validar hash de seguridad
+                $expectedHash = hash('sha256', $qrData['email'] . $qrData['participant_id'] . config('app.key'));
+                if (!isset($qrData['hash']) || $qrData['hash'] !== $expectedHash) {
+                    return [
+                        'valid' => false,
+                        'error' => 'Invalid QR code hash',
+                        'participant' => null
+                    ];
+                }
+
+                // Buscar participante
+                $participant = Participant::where('id', $qrData['participant_id'])
+                    ->where('email', $qrData['email'])
+                    ->where('is_active', true)
+                    ->first();
+
+                if (!$participant) {
+                    return [
+                        'valid' => false,
+                        'error' => 'Participant not found or inactive',
+                        'participant' => null
+                    ];
+                }
+
+                return [
+                    'valid' => true,
+                    'error' => null,
+                    'participant' => $participant,
+                    'qr_data' => $qrData
+                ];
+            }
+            // Verificar si es el formato legacy con participant_id, email, token
+            elseif ($qrData && isset($qrData['participant_id']) && isset($qrData['email']) && isset($qrData['token'])) {
+                // Buscar participante por ID y email
+                $participant = Participant::where('id', $qrData['participant_id'])
+                    ->where('email', $qrData['email'])
+                    ->where('is_active', true)
+                    ->first();
+
+                if (!$participant) {
+                    return [
+                        'valid' => false,
+                        'error' => 'Participant not found or inactive',
+                        'participant' => null
+                    ];
+                }
+
+                return [
+                    'valid' => true,
+                    'error' => null,
+                    'participant' => $participant,
+                    'qr_data' => $qrData
+                ];
+            }
+            // Si no es ninguno de los formatos válidos
+            else {
                 return [
                     'valid' => false,
                     'error' => 'Invalid QR code format for congress attendance',
                     'participant' => null
                 ];
             }
-
-            // Verificar hash de seguridad
-            $expectedHash = hash('sha256', $qrData['email'] . $qrData['participant_id'] . config('app.key'));
-            if (!isset($qrData['hash']) || $qrData['hash'] !== $expectedHash) {
-                return [
-                    'valid' => false,
-                    'error' => 'Invalid QR code hash',
-                    'participant' => null
-                ];
-            }
-
-            // Buscar participante
-            $participant = Participant::where('id', $qrData['participant_id'])
-                ->where('email', $qrData['email'])
-                ->where('is_active', true)
-                ->first();
-
-            if (!$participant) {
-                return [
-                    'valid' => false,
-                    'error' => 'Participant not found or inactive',
-                    'participant' => null
-                ];
-            }
-
-            return [
-                'valid' => true,
-                'error' => null,
-                'participant' => $participant,
-                'qr_data' => $qrData
-            ];
 
         } catch (\Exception $e) {
             Log::error('Error validating congress attendance QR code', [

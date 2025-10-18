@@ -166,7 +166,7 @@ export const index = {
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-const showb4c760ceeac767f5c5c971ef150610e6 = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+const showb4c760ceeac767f5c5c971ef150610e6 = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: showb4c760ceeac767f5c5c971ef150610e6.url(args, options),
     method: 'get',
 })
@@ -181,7 +181,7 @@ showb4c760ceeac767f5c5c971ef150610e6.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-showb4c760ceeac767f5c5c971ef150610e6.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+showb4c760ceeac767f5c5c971ef150610e6.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -214,7 +214,7 @@ showb4c760ceeac767f5c5c971ef150610e6.url = (args: { activity: number | { id: num
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-showb4c760ceeac767f5c5c971ef150610e6.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+showb4c760ceeac767f5c5c971ef150610e6.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: showb4c760ceeac767f5c5c971ef150610e6.url(args, options),
     method: 'get',
 })
@@ -223,7 +223,7 @@ showb4c760ceeac767f5c5c971ef150610e6.get = (args: { activity: number | { id: num
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-showb4c760ceeac767f5c5c971ef150610e6.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+showb4c760ceeac767f5c5c971ef150610e6.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: showb4c760ceeac767f5c5c971ef150610e6.url(args, options),
     method: 'head',
 })
@@ -233,7 +233,7 @@ showb4c760ceeac767f5c5c971ef150610e6.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-    const showb4c760ceeac767f5c5c971ef150610e6Form = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showb4c760ceeac767f5c5c971ef150610e6Form = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: showb4c760ceeac767f5c5c971ef150610e6.url(args, options),
         method: 'get',
     })
@@ -243,7 +243,7 @@ showb4c760ceeac767f5c5c971ef150610e6.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-        showb4c760ceeac767f5c5c971ef150610e6Form.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showb4c760ceeac767f5c5c971ef150610e6Form.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: showb4c760ceeac767f5c5c971ef150610e6.url(args, options),
             method: 'get',
         })
@@ -252,7 +252,7 @@ showb4c760ceeac767f5c5c971ef150610e6.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/activities/{activity}'
  */
-        showb4c760ceeac767f5c5c971ef150610e6Form.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showb4c760ceeac767f5c5c971ef150610e6Form.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: showb4c760ceeac767f5c5c971ef150610e6.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -268,7 +268,7 @@ showb4c760ceeac767f5c5c971ef150610e6.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-const showfce21df800562b30b839403e75586158 = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+const showfce21df800562b30b839403e75586158 = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: showfce21df800562b30b839403e75586158.url(args, options),
     method: 'get',
 })
@@ -283,7 +283,7 @@ showfce21df800562b30b839403e75586158.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-showfce21df800562b30b839403e75586158.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+showfce21df800562b30b839403e75586158.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -316,7 +316,7 @@ showfce21df800562b30b839403e75586158.url = (args: { activity: number | { id: num
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-showfce21df800562b30b839403e75586158.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+showfce21df800562b30b839403e75586158.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: showfce21df800562b30b839403e75586158.url(args, options),
     method: 'get',
 })
@@ -325,7 +325,7 @@ showfce21df800562b30b839403e75586158.get = (args: { activity: number | { id: num
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-showfce21df800562b30b839403e75586158.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+showfce21df800562b30b839403e75586158.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: showfce21df800562b30b839403e75586158.url(args, options),
     method: 'head',
 })
@@ -335,7 +335,7 @@ showfce21df800562b30b839403e75586158.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-    const showfce21df800562b30b839403e75586158Form = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showfce21df800562b30b839403e75586158Form = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: showfce21df800562b30b839403e75586158.url(args, options),
         method: 'get',
     })
@@ -345,7 +345,7 @@ showfce21df800562b30b839403e75586158.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-        showfce21df800562b30b839403e75586158Form.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showfce21df800562b30b839403e75586158Form.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: showfce21df800562b30b839403e75586158.url(args, options),
             method: 'get',
         })
@@ -354,7 +354,7 @@ showfce21df800562b30b839403e75586158.head = (args: { activity: number | { id: nu
  * @see app/Http/Controllers/Api/ActivityController.php:83
  * @route '/api/v1/admin/activities/{activity}'
  */
-        showfce21df800562b30b839403e75586158Form.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showfce21df800562b30b839403e75586158Form.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: showfce21df800562b30b839403e75586158.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -505,7 +505,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-export const update = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -520,7 +520,7 @@ update.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-update.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -553,7 +553,7 @@ update.url = (args: { activity: number | { id: number } } | [activity: number | 
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-update.put = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -562,7 +562,7 @@ update.put = (args: { activity: number | { id: number } } | [activity: number | 
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-update.patch = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
@@ -572,7 +572,7 @@ update.patch = (args: { activity: number | { id: number } } | [activity: number 
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-    const updateForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -587,7 +587,7 @@ update.patch = (args: { activity: number | { id: number } } | [activity: number 
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-        updateForm.put = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -601,7 +601,7 @@ update.patch = (args: { activity: number | { id: number } } | [activity: number 
  * @see app/Http/Controllers/Api/ActivityController.php:96
  * @route '/api/v1/admin/activities/{activity}'
  */
-        updateForm.patch = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -617,7 +617,7 @@ update.patch = (args: { activity: number | { id: number } } | [activity: number 
  * @see app/Http/Controllers/Api/ActivityController.php:128
  * @route '/api/v1/admin/activities/{activity}'
  */
-export const destroy = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -632,7 +632,7 @@ destroy.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:128
  * @route '/api/v1/admin/activities/{activity}'
  */
-destroy.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -665,7 +665,7 @@ destroy.url = (args: { activity: number | { id: number } } | [activity: number |
  * @see app/Http/Controllers/Api/ActivityController.php:128
  * @route '/api/v1/admin/activities/{activity}'
  */
-destroy.delete = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -675,7 +675,7 @@ destroy.delete = (args: { activity: number | { id: number } } | [activity: numbe
  * @see app/Http/Controllers/Api/ActivityController.php:128
  * @route '/api/v1/admin/activities/{activity}'
  */
-    const destroyForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -690,7 +690,7 @@ destroy.delete = (args: { activity: number | { id: number } } | [activity: numbe
  * @see app/Http/Controllers/Api/ActivityController.php:128
  * @route '/api/v1/admin/activities/{activity}'
  */
-        destroyForm.delete = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',
@@ -706,7 +706,7 @@ destroy.delete = (args: { activity: number | { id: number } } | [activity: numbe
  * @see app/Http/Controllers/Api/ActivityController.php:147
  * @route '/api/v1/admin/activities/{activity}/toggle-status'
  */
-export const toggleStatus = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const toggleStatus = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: toggleStatus.url(args, options),
     method: 'patch',
 })
@@ -721,7 +721,7 @@ toggleStatus.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:147
  * @route '/api/v1/admin/activities/{activity}/toggle-status'
  */
-toggleStatus.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+toggleStatus.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -754,7 +754,7 @@ toggleStatus.url = (args: { activity: number | { id: number } } | [activity: num
  * @see app/Http/Controllers/Api/ActivityController.php:147
  * @route '/api/v1/admin/activities/{activity}/toggle-status'
  */
-toggleStatus.patch = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+toggleStatus.patch = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: toggleStatus.url(args, options),
     method: 'patch',
 })
@@ -764,7 +764,7 @@ toggleStatus.patch = (args: { activity: number | { id: number } } | [activity: n
  * @see app/Http/Controllers/Api/ActivityController.php:147
  * @route '/api/v1/admin/activities/{activity}/toggle-status'
  */
-    const toggleStatusForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const toggleStatusForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: toggleStatus.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PATCH',
@@ -779,7 +779,7 @@ toggleStatus.patch = (args: { activity: number | { id: number } } | [activity: n
  * @see app/Http/Controllers/Api/ActivityController.php:147
  * @route '/api/v1/admin/activities/{activity}/toggle-status'
  */
-        toggleStatusForm.patch = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        toggleStatusForm.patch = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: toggleStatus.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -795,7 +795,7 @@ toggleStatus.patch = (args: { activity: number | { id: number } } | [activity: n
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-export const participants = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const participants = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: participants.url(args, options),
     method: 'get',
 })
@@ -810,7 +810,7 @@ participants.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-participants.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+participants.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -843,7 +843,7 @@ participants.url = (args: { activity: number | { id: number } } | [activity: num
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-participants.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+participants.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: participants.url(args, options),
     method: 'get',
 })
@@ -852,7 +852,7 @@ participants.get = (args: { activity: number | { id: number } } | [activity: num
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-participants.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+participants.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: participants.url(args, options),
     method: 'head',
 })
@@ -862,7 +862,7 @@ participants.head = (args: { activity: number | { id: number } } | [activity: nu
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-    const participantsForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const participantsForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: participants.url(args, options),
         method: 'get',
     })
@@ -872,7 +872,7 @@ participants.head = (args: { activity: number | { id: number } } | [activity: nu
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-        participantsForm.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        participantsForm.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: participants.url(args, options),
             method: 'get',
         })
@@ -881,7 +881,7 @@ participants.head = (args: { activity: number | { id: number } } | [activity: nu
  * @see app/Http/Controllers/Api/ActivityController.php:160
  * @route '/api/v1/admin/activities/{activity}/participants'
  */
-        participantsForm.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        participantsForm.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: participants.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -897,7 +897,7 @@ participants.head = (args: { activity: number | { id: number } } | [activity: nu
  * @see app/Http/Controllers/Api/ActivityController.php:179
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/approve'
  */
-export const approveParticipant = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const approveParticipant = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: approveParticipant.url(args, options),
     method: 'patch',
 })
@@ -912,7 +912,7 @@ approveParticipant.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:179
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/approve'
  */
-approveParticipant.url = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions) => {
+approveParticipant.url = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
                     activity: args[0],
@@ -942,7 +942,7 @@ approveParticipant.url = (args: { activity: number | { id: number }, participant
  * @see app/Http/Controllers/Api/ActivityController.php:179
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/approve'
  */
-approveParticipant.patch = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+approveParticipant.patch = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: approveParticipant.url(args, options),
     method: 'patch',
 })
@@ -952,7 +952,7 @@ approveParticipant.patch = (args: { activity: number | { id: number }, participa
  * @see app/Http/Controllers/Api/ActivityController.php:179
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/approve'
  */
-    const approveParticipantForm = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const approveParticipantForm = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: approveParticipant.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PATCH',
@@ -967,7 +967,7 @@ approveParticipant.patch = (args: { activity: number | { id: number }, participa
  * @see app/Http/Controllers/Api/ActivityController.php:179
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/approve'
  */
-        approveParticipantForm.patch = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        approveParticipantForm.patch = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: approveParticipant.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -983,7 +983,7 @@ approveParticipant.patch = (args: { activity: number | { id: number }, participa
  * @see app/Http/Controllers/Api/ActivityController.php:208
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/reject'
  */
-export const rejectParticipant = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const rejectParticipant = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: rejectParticipant.url(args, options),
     method: 'patch',
 })
@@ -998,7 +998,7 @@ rejectParticipant.definition = {
  * @see app/Http/Controllers/Api/ActivityController.php:208
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/reject'
  */
-rejectParticipant.url = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions) => {
+rejectParticipant.url = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
                     activity: args[0],
@@ -1028,7 +1028,7 @@ rejectParticipant.url = (args: { activity: number | { id: number }, participant:
  * @see app/Http/Controllers/Api/ActivityController.php:208
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/reject'
  */
-rejectParticipant.patch = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+rejectParticipant.patch = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: rejectParticipant.url(args, options),
     method: 'patch',
 })
@@ -1038,7 +1038,7 @@ rejectParticipant.patch = (args: { activity: number | { id: number }, participan
  * @see app/Http/Controllers/Api/ActivityController.php:208
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/reject'
  */
-    const rejectParticipantForm = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const rejectParticipantForm = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: rejectParticipant.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PATCH',
@@ -1053,7 +1053,7 @@ rejectParticipant.patch = (args: { activity: number | { id: number }, participan
  * @see app/Http/Controllers/Api/ActivityController.php:208
  * @route '/api/v1/admin/activities/{activity}/participants/{participant}/reject'
  */
-        rejectParticipantForm.patch = (args: { activity: number | { id: number }, participant: number | { id: number } } | [activity: number | { id: number }, participant: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        rejectParticipantForm.patch = (args: { activity: string | number | { id: string | number }, participant: string | number | { id: string | number } } | [activity: string | number | { id: string | number }, participant: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: rejectParticipant.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',

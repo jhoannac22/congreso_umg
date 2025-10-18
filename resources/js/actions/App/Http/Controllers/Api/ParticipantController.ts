@@ -215,7 +215,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-export const show = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -230,7 +230,7 @@ show.definition = {
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-show.url = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show.url = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { participant: args }
     }
@@ -263,7 +263,7 @@ show.url = (args: { participant: number | { id: number } } | [participant: numbe
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-show.get = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -272,7 +272,7 @@ show.get = (args: { participant: number | { id: number } } | [participant: numbe
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-show.head = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -282,7 +282,7 @@ show.head = (args: { participant: number | { id: number } } | [participant: numb
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-    const showForm = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showForm = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show.url(args, options),
         method: 'get',
     })
@@ -292,7 +292,7 @@ show.head = (args: { participant: number | { id: number } } | [participant: numb
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-        showForm.get = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.get = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, options),
             method: 'get',
         })
@@ -301,7 +301,7 @@ show.head = (args: { participant: number | { id: number } } | [participant: numb
  * @see app/Http/Controllers/Api/ParticipantController.php:121
  * @route '/api/v1/participants/{participant}'
  */
-        showForm.head = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.head = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -317,7 +317,7 @@ show.head = (args: { participant: number | { id: number } } | [participant: numb
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-export const update = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -332,7 +332,7 @@ update.definition = {
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-update.url = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { participant: args }
     }
@@ -365,7 +365,7 @@ update.url = (args: { participant: number | { id: number } } | [participant: num
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-update.put = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -374,7 +374,7 @@ update.put = (args: { participant: number | { id: number } } | [participant: num
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-update.patch = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
@@ -384,7 +384,7 @@ update.patch = (args: { participant: number | { id: number } } | [participant: n
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-    const updateForm = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -399,7 +399,7 @@ update.patch = (args: { participant: number | { id: number } } | [participant: n
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-        updateForm.put = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -413,7 +413,7 @@ update.patch = (args: { participant: number | { id: number } } | [participant: n
  * @see app/Http/Controllers/Api/ParticipantController.php:168
  * @route '/api/v1/participants/{participant}'
  */
-        updateForm.patch = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -429,7 +429,7 @@ update.patch = (args: { participant: number | { id: number } } | [participant: n
  * @see app/Http/Controllers/Api/ParticipantController.php:181
  * @route '/api/v1/participants/{participant}'
  */
-export const destroy = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -444,7 +444,7 @@ destroy.definition = {
  * @see app/Http/Controllers/Api/ParticipantController.php:181
  * @route '/api/v1/participants/{participant}'
  */
-destroy.url = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { participant: args }
     }
@@ -477,7 +477,7 @@ destroy.url = (args: { participant: number | { id: number } } | [participant: nu
  * @see app/Http/Controllers/Api/ParticipantController.php:181
  * @route '/api/v1/participants/{participant}'
  */
-destroy.delete = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -487,7 +487,7 @@ destroy.delete = (args: { participant: number | { id: number } } | [participant:
  * @see app/Http/Controllers/Api/ParticipantController.php:181
  * @route '/api/v1/participants/{participant}'
  */
-    const destroyForm = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -502,7 +502,7 @@ destroy.delete = (args: { participant: number | { id: number } } | [participant:
  * @see app/Http/Controllers/Api/ParticipantController.php:181
  * @route '/api/v1/participants/{participant}'
  */
-        destroyForm.delete = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',
@@ -615,7 +615,7 @@ showByEmail.head = (args: { email: string | number } | [email: string | number ]
  * @see app/Http/Controllers/Api/ParticipantController.php:193
  * @route '/api/v1/participants/{participant}/register-activity'
  */
-export const registerActivity = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const registerActivity = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: registerActivity.url(args, options),
     method: 'post',
 })
@@ -630,7 +630,7 @@ registerActivity.definition = {
  * @see app/Http/Controllers/Api/ParticipantController.php:193
  * @route '/api/v1/participants/{participant}/register-activity'
  */
-registerActivity.url = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+registerActivity.url = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { participant: args }
     }
@@ -663,7 +663,7 @@ registerActivity.url = (args: { participant: number | { id: number } } | [partic
  * @see app/Http/Controllers/Api/ParticipantController.php:193
  * @route '/api/v1/participants/{participant}/register-activity'
  */
-registerActivity.post = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+registerActivity.post = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: registerActivity.url(args, options),
     method: 'post',
 })
@@ -673,7 +673,7 @@ registerActivity.post = (args: { participant: number | { id: number } } | [parti
  * @see app/Http/Controllers/Api/ParticipantController.php:193
  * @route '/api/v1/participants/{participant}/register-activity'
  */
-    const registerActivityForm = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const registerActivityForm = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: registerActivity.url(args, options),
         method: 'post',
     })
@@ -683,7 +683,7 @@ registerActivity.post = (args: { participant: number | { id: number } } | [parti
  * @see app/Http/Controllers/Api/ParticipantController.php:193
  * @route '/api/v1/participants/{participant}/register-activity'
  */
-        registerActivityForm.post = (args: { participant: number | { id: number } } | [participant: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        registerActivityForm.post = (args: { participant: string | number | { id: string | number } } | [participant: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: registerActivity.url(args, options),
             method: 'post',
         })
@@ -694,7 +694,7 @@ registerActivity.post = (args: { participant: number | { id: number } } | [parti
  * @see app/Http/Controllers/Api/ParticipantController.php:237
  * @route '/api/v1/participants/{participant}/unregister-activity/{activity}'
  */
-export const unregisterActivity = (args: { participant: number | { id: number }, activity: number | { id: number } } | [participant: number | { id: number }, activity: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const unregisterActivity = (args: { participant: string | number | { id: string | number }, activity: string | number | { id: string | number } } | [participant: string | number | { id: string | number }, activity: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: unregisterActivity.url(args, options),
     method: 'delete',
 })
@@ -709,7 +709,7 @@ unregisterActivity.definition = {
  * @see app/Http/Controllers/Api/ParticipantController.php:237
  * @route '/api/v1/participants/{participant}/unregister-activity/{activity}'
  */
-unregisterActivity.url = (args: { participant: number | { id: number }, activity: number | { id: number } } | [participant: number | { id: number }, activity: number | { id: number } ], options?: RouteQueryOptions) => {
+unregisterActivity.url = (args: { participant: string | number | { id: string | number }, activity: string | number | { id: string | number } } | [participant: string | number | { id: string | number }, activity: string | number | { id: string | number } ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
         args = {
                     participant: args[0],
@@ -739,7 +739,7 @@ unregisterActivity.url = (args: { participant: number | { id: number }, activity
  * @see app/Http/Controllers/Api/ParticipantController.php:237
  * @route '/api/v1/participants/{participant}/unregister-activity/{activity}'
  */
-unregisterActivity.delete = (args: { participant: number | { id: number }, activity: number | { id: number } } | [participant: number | { id: number }, activity: number | { id: number } ], options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+unregisterActivity.delete = (args: { participant: string | number | { id: string | number }, activity: string | number | { id: string | number } } | [participant: string | number | { id: string | number }, activity: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: unregisterActivity.url(args, options),
     method: 'delete',
 })
@@ -749,7 +749,7 @@ unregisterActivity.delete = (args: { participant: number | { id: number }, activ
  * @see app/Http/Controllers/Api/ParticipantController.php:237
  * @route '/api/v1/participants/{participant}/unregister-activity/{activity}'
  */
-    const unregisterActivityForm = (args: { participant: number | { id: number }, activity: number | { id: number } } | [participant: number | { id: number }, activity: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const unregisterActivityForm = (args: { participant: string | number | { id: string | number }, activity: string | number | { id: string | number } } | [participant: string | number | { id: string | number }, activity: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: unregisterActivity.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -764,7 +764,7 @@ unregisterActivity.delete = (args: { participant: number | { id: number }, activ
  * @see app/Http/Controllers/Api/ParticipantController.php:237
  * @route '/api/v1/participants/{participant}/unregister-activity/{activity}'
  */
-        unregisterActivityForm.delete = (args: { participant: number | { id: number }, activity: number | { id: number } } | [participant: number | { id: number }, activity: number | { id: number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        unregisterActivityForm.delete = (args: { participant: string | number | { id: string | number }, activity: string | number | { id: string | number } } | [participant: string | number | { id: string | number }, activity: string | number | { id: string | number } ], options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: unregisterActivity.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',

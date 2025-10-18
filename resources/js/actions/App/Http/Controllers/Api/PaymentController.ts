@@ -4,7 +4,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
  * @see app/Http/Controllers/Api/PaymentController.php:19
  * @route '/api/v1/activities/{activity}/payments'
  */
-export const create = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const create = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: create.url(args, options),
     method: 'post',
 })
@@ -19,7 +19,7 @@ create.definition = {
  * @see app/Http/Controllers/Api/PaymentController.php:19
  * @route '/api/v1/activities/{activity}/payments'
  */
-create.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+create.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -52,7 +52,7 @@ create.url = (args: { activity: number | { id: number } } | [activity: number | 
  * @see app/Http/Controllers/Api/PaymentController.php:19
  * @route '/api/v1/activities/{activity}/payments'
  */
-create.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+create.post = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: create.url(args, options),
     method: 'post',
 })
@@ -62,7 +62,7 @@ create.post = (args: { activity: number | { id: number } } | [activity: number |
  * @see app/Http/Controllers/Api/PaymentController.php:19
  * @route '/api/v1/activities/{activity}/payments'
  */
-    const createForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const createForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: create.url(args, options),
         method: 'post',
     })
@@ -72,7 +72,7 @@ create.post = (args: { activity: number | { id: number } } | [activity: number |
  * @see app/Http/Controllers/Api/PaymentController.php:19
  * @route '/api/v1/activities/{activity}/payments'
  */
-        createForm.post = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        createForm.post = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: create.url(args, options),
             method: 'post',
         })
@@ -83,7 +83,7 @@ create.post = (args: { activity: number | { id: number } } | [activity: number |
  * @see app/Http/Controllers/Api/PaymentController.php:100
  * @route '/api/v1/payments/{payment}/upload-proof'
  */
-export const uploadProof = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const uploadProof = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: uploadProof.url(args, options),
     method: 'post',
 })
@@ -98,7 +98,7 @@ uploadProof.definition = {
  * @see app/Http/Controllers/Api/PaymentController.php:100
  * @route '/api/v1/payments/{payment}/upload-proof'
  */
-uploadProof.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+uploadProof.url = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { payment: args }
     }
@@ -131,7 +131,7 @@ uploadProof.url = (args: { payment: number | { id: number } } | [payment: number
  * @see app/Http/Controllers/Api/PaymentController.php:100
  * @route '/api/v1/payments/{payment}/upload-proof'
  */
-uploadProof.post = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+uploadProof.post = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: uploadProof.url(args, options),
     method: 'post',
 })
@@ -141,7 +141,7 @@ uploadProof.post = (args: { payment: number | { id: number } } | [payment: numbe
  * @see app/Http/Controllers/Api/PaymentController.php:100
  * @route '/api/v1/payments/{payment}/upload-proof'
  */
-    const uploadProofForm = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const uploadProofForm = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: uploadProof.url(args, options),
         method: 'post',
     })
@@ -151,7 +151,7 @@ uploadProof.post = (args: { payment: number | { id: number } } | [payment: numbe
  * @see app/Http/Controllers/Api/PaymentController.php:100
  * @route '/api/v1/payments/{payment}/upload-proof'
  */
-        uploadProofForm.post = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        uploadProofForm.post = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: uploadProof.url(args, options),
             method: 'post',
         })
@@ -162,7 +162,7 @@ uploadProof.post = (args: { payment: number | { id: number } } | [payment: numbe
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-export const checkPaymentStatus = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const checkPaymentStatus = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: checkPaymentStatus.url(args, options),
     method: 'get',
 })
@@ -177,7 +177,7 @@ checkPaymentStatus.definition = {
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-checkPaymentStatus.url = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+checkPaymentStatus.url = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { activity: args }
     }
@@ -210,7 +210,7 @@ checkPaymentStatus.url = (args: { activity: number | { id: number } } | [activit
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-checkPaymentStatus.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+checkPaymentStatus.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: checkPaymentStatus.url(args, options),
     method: 'get',
 })
@@ -219,7 +219,7 @@ checkPaymentStatus.get = (args: { activity: number | { id: number } } | [activit
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-checkPaymentStatus.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+checkPaymentStatus.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: checkPaymentStatus.url(args, options),
     method: 'head',
 })
@@ -229,7 +229,7 @@ checkPaymentStatus.head = (args: { activity: number | { id: number } } | [activi
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-    const checkPaymentStatusForm = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const checkPaymentStatusForm = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: checkPaymentStatus.url(args, options),
         method: 'get',
     })
@@ -239,7 +239,7 @@ checkPaymentStatus.head = (args: { activity: number | { id: number } } | [activi
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-        checkPaymentStatusForm.get = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        checkPaymentStatusForm.get = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: checkPaymentStatus.url(args, options),
             method: 'get',
         })
@@ -248,7 +248,7 @@ checkPaymentStatus.head = (args: { activity: number | { id: number } } | [activi
  * @see app/Http/Controllers/Api/PaymentController.php:202
  * @route '/api/v1/activities/{activity}/check-payment'
  */
-        checkPaymentStatusForm.head = (args: { activity: number | { id: number } } | [activity: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        checkPaymentStatusForm.head = (args: { activity: string | number | { id: string | number } } | [activity: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: checkPaymentStatus.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -342,7 +342,7 @@ myPayments.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
  * @see app/Http/Controllers/Api/PaymentController.php:141
  * @route '/api/v1/admin/payments/{payment}/confirm'
  */
-export const confirm = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const confirm = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: confirm.url(args, options),
     method: 'post',
 })
@@ -357,7 +357,7 @@ confirm.definition = {
  * @see app/Http/Controllers/Api/PaymentController.php:141
  * @route '/api/v1/admin/payments/{payment}/confirm'
  */
-confirm.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+confirm.url = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { payment: args }
     }
@@ -390,7 +390,7 @@ confirm.url = (args: { payment: number | { id: number } } | [payment: number | {
  * @see app/Http/Controllers/Api/PaymentController.php:141
  * @route '/api/v1/admin/payments/{payment}/confirm'
  */
-confirm.post = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+confirm.post = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: confirm.url(args, options),
     method: 'post',
 })
@@ -400,7 +400,7 @@ confirm.post = (args: { payment: number | { id: number } } | [payment: number | 
  * @see app/Http/Controllers/Api/PaymentController.php:141
  * @route '/api/v1/admin/payments/{payment}/confirm'
  */
-    const confirmForm = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const confirmForm = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: confirm.url(args, options),
         method: 'post',
     })
@@ -410,7 +410,7 @@ confirm.post = (args: { payment: number | { id: number } } | [payment: number | 
  * @see app/Http/Controllers/Api/PaymentController.php:141
  * @route '/api/v1/admin/payments/{payment}/confirm'
  */
-        confirmForm.post = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        confirmForm.post = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: confirm.url(args, options),
             method: 'post',
         })
@@ -421,7 +421,7 @@ confirm.post = (args: { payment: number | { id: number } } | [payment: number | 
  * @see app/Http/Controllers/Api/PaymentController.php:161
  * @route '/api/v1/admin/payments/{payment}/reject'
  */
-export const reject = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const reject = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: reject.url(args, options),
     method: 'post',
 })
@@ -436,7 +436,7 @@ reject.definition = {
  * @see app/Http/Controllers/Api/PaymentController.php:161
  * @route '/api/v1/admin/payments/{payment}/reject'
  */
-reject.url = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+reject.url = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { payment: args }
     }
@@ -469,7 +469,7 @@ reject.url = (args: { payment: number | { id: number } } | [payment: number | { 
  * @see app/Http/Controllers/Api/PaymentController.php:161
  * @route '/api/v1/admin/payments/{payment}/reject'
  */
-reject.post = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+reject.post = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: reject.url(args, options),
     method: 'post',
 })
@@ -479,7 +479,7 @@ reject.post = (args: { payment: number | { id: number } } | [payment: number | {
  * @see app/Http/Controllers/Api/PaymentController.php:161
  * @route '/api/v1/admin/payments/{payment}/reject'
  */
-    const rejectForm = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const rejectForm = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: reject.url(args, options),
         method: 'post',
     })
@@ -489,7 +489,7 @@ reject.post = (args: { payment: number | { id: number } } | [payment: number | {
  * @see app/Http/Controllers/Api/PaymentController.php:161
  * @route '/api/v1/admin/payments/{payment}/reject'
  */
-        rejectForm.post = (args: { payment: number | { id: number } } | [payment: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        rejectForm.post = (args: { payment: string | number | { id: string | number } } | [payment: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: reject.url(args, options),
             method: 'post',
         })

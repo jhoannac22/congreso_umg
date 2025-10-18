@@ -59,6 +59,11 @@ export default function Login() {
             localStorage.setItem('auth_token', data.access_token);
             localStorage.setItem('user', JSON.stringify(data.user));
             
+            // Store participant data if available
+            if (data.participant) {
+                localStorage.setItem('participant', JSON.stringify(data.participant));
+            }
+            
             // Redirect to dashboard or home
             window.location.href = '/dashboard';
             

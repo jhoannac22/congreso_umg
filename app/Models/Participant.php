@@ -155,6 +155,22 @@ class Participant extends Model
     }
 
     /**
+     * Accessor para name (compatibilidad con el frontend)
+     */
+    public function getNameAttribute(): string
+    {
+        return $this->getFullNameAttribute();
+    }
+
+    /**
+     * Accessor para institution (compatibilidad con el frontend)
+     */
+    public function getInstitutionAttribute(): ?string
+    {
+        return $this->school;
+    }
+
+    /**
      * Verificar si es participante interno
      */
     public function isInterno(): bool

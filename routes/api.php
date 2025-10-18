@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ActivityRegistrationController;
 use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\AttendanceReportController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DiplomaController;
 use App\Http\Controllers\Api\EmailController;
 use App\Http\Controllers\Api\FaqController;
@@ -117,6 +118,8 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::apiResource('diplomas', DiplomaController::class);
     Route::post('/diplomas/generate/{participant}/{activity}', [DiplomaController::class, 'generate']);
     Route::get('/diplomas/download/{diploma}', [DiplomaController::class, 'download']);
+    Route::post('/diplomas/{diploma}/send-email', [DiplomaController::class, 'sendByEmail']);
+    Route::get('/participants/{participant}/diplomas', [DiplomaController::class, 'getParticipantDiplomas']);
     
     // Gestión de ganadores
     Route::apiResource('winners', WinnerController::class);
@@ -126,6 +129,9 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
 // Rutas de administración (requieren rol admin u organizer)
 Route::prefix('v1/admin')->middleware(['auth:sanctum', 'role:admin,organizer'])->group(function () {
+    // Dashboard principal
+    Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
+    
     // Gestión completa de categorías
     Route::apiResource('categories', CategoryController::class);
     Route::patch('/categories/{category}/toggle-status', [CategoryController::class, 'toggleStatus']);
@@ -149,9 +155,20 @@ Route::prefix('v1/admin')->middleware(['auth:sanctum', 'role:admin,organizer'])-
     Route::get('/reports/activities', [ActivityController::class, 'report']);
     Route::get('/reports/participants', [ParticipantController::class, 'report']);
     
+    // Estadísticas y exportación de asistencia
+    Route::get('/attendance/stats', [AttendanceController::class, 'getStats']);
+    Route::get('/attendance/export-excel', [AttendanceController::class, 'exportExcel']);
+    
     // Gestión de pagos (admin)
     Route::post('/payments/{payment}/confirm', [PaymentController::class, 'confirm']);
     Route::post('/payments/{payment}/reject', [PaymentController::class, 'reject']);
+    
+    // Generación masiva de diplomas
+    Route::post('/activities/{activity}/generate-diplomas', [DiplomaController::class, 'generateBulkForActivity']);
+    
+    // Estadísticas y gestión de diplomas
+    Route::get('/diplomas/stats', [DiplomaController::class, 'getStats']);
+    Route::post('/diplomas/send-bulk-emails', [DiplomaController::class, 'sendBulkEmails']);
 });
 
 // Rutas de juez (requieren rol judge)

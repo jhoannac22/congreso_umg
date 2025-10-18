@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/winners'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -112,7 +112,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -122,7 +122,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -132,7 +132,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -141,7 +141,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\Api\WinnerController::index
- * @see app/Http/Controllers/Api/WinnerController.php:16
+ * @see app/Http/Controllers/Api/WinnerController.php:18
  * @route '/api/v1/judge/winners'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -157,7 +157,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/winners'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -172,7 +172,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/winners'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -181,7 +181,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/winners'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -191,7 +191,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/winners'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -201,7 +201,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/winners'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -212,7 +212,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/judge/winners'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -227,7 +227,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/judge/winners'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -236,7 +236,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/judge/winners'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -246,7 +246,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/judge/winners'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -256,7 +256,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::store
- * @see app/Http/Controllers/Api/WinnerController.php:56
+ * @see app/Http/Controllers/Api/WinnerController.php:58
  * @route '/api/v1/judge/winners'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -267,10 +267,10 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-export const show = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -282,10 +282,10 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-show.url = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show.url = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { winner: args }
     }
@@ -315,48 +315,48 @@ show.url = (args: { winner: number | { id: number } } | [winner: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-show.get = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-show.head = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-    const showForm = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showForm = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show.url(args, options),
         method: 'get',
     })
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-        showForm.get = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.get = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, options),
             method: 'get',
         })
             /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/winners/{winner}'
  */
-        showForm.head = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.head = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -369,10 +369,10 @@ show.head = (args: { winner: number | { id: number } } | [winner: number | { id:
     show.form = showForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-export const show = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -384,10 +384,10 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-show.url = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show.url = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { winner: args }
     }
@@ -417,48 +417,48 @@ show.url = (args: { winner: number | { id: number } } | [winner: number | { id: 
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-show.get = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-show.head = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-    const showForm = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showForm = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show.url(args, options),
         method: 'get',
     })
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-        showForm.get = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.get = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, options),
             method: 'get',
         })
             /**
 * @see \App\Http\Controllers\Api\WinnerController::show
- * @see app/Http/Controllers/Api/WinnerController.php:95
+ * @see app/Http/Controllers/Api/WinnerController.php:107
  * @route '/api/v1/judge/winners/{winner}'
  */
-        showForm.head = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.head = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -471,10 +471,10 @@ show.head = (args: { winner: number | { id: number } } | [winner: number | { id:
     show.form = showForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-export const update = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -486,10 +486,10 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-update.url = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { winner: args }
     }
@@ -519,29 +519,29 @@ update.url = (args: { winner: number | { id: number } } | [winner: number | { id
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-update.put = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-update.patch = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-    const updateForm = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -553,10 +553,10 @@ update.patch = (args: { winner: number | { id: number } } | [winner: number | { 
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-        updateForm.put = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -567,10 +567,10 @@ update.patch = (args: { winner: number | { id: number } } | [winner: number | { 
         })
             /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/winners/{winner}'
  */
-        updateForm.patch = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -583,10 +583,10 @@ update.patch = (args: { winner: number | { id: number } } | [winner: number | { 
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-export const update = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -598,10 +598,10 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-update.url = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { winner: args }
     }
@@ -631,29 +631,29 @@ update.url = (args: { winner: number | { id: number } } | [winner: number | { id
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-update.put = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
 /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-update.patch = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-    const updateForm = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -665,10 +665,10 @@ update.patch = (args: { winner: number | { id: number } } | [winner: number | { 
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-        updateForm.put = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -679,10 +679,10 @@ update.patch = (args: { winner: number | { id: number } } | [winner: number | { 
         })
             /**
 * @see \App\Http\Controllers\Api\WinnerController::update
- * @see app/Http/Controllers/Api/WinnerController.php:108
+ * @see app/Http/Controllers/Api/WinnerController.php:120
  * @route '/api/v1/judge/winners/{winner}'
  */
-        updateForm.patch = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -695,10 +695,10 @@ update.patch = (args: { winner: number | { id: number } } | [winner: number | { 
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/winners/{winner}'
  */
-export const destroy = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -710,10 +710,10 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/winners/{winner}'
  */
-destroy.url = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { winner: args }
     }
@@ -743,20 +743,20 @@ destroy.url = (args: { winner: number | { id: number } } | [winner: number | { i
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/winners/{winner}'
  */
-destroy.delete = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/winners/{winner}'
  */
-    const destroyForm = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -768,10 +768,10 @@ destroy.delete = (args: { winner: number | { id: number } } | [winner: number | 
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/winners/{winner}'
  */
-        destroyForm.delete = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',
@@ -784,10 +784,10 @@ destroy.delete = (args: { winner: number | { id: number } } | [winner: number | 
     destroy.form = destroyForm
 /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/judge/winners/{winner}'
  */
-export const destroy = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -799,10 +799,10 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/judge/winners/{winner}'
  */
-destroy.url = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { winner: args }
     }
@@ -832,20 +832,20 @@ destroy.url = (args: { winner: number | { id: number } } | [winner: number | { i
 
 /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/judge/winners/{winner}'
  */
-destroy.delete = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
     /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/judge/winners/{winner}'
  */
-    const destroyForm = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -857,10 +857,10 @@ destroy.delete = (args: { winner: number | { id: number } } | [winner: number | 
 
             /**
 * @see \App\Http\Controllers\Api\WinnerController::destroy
- * @see app/Http/Controllers/Api/WinnerController.php:132
+ * @see app/Http/Controllers/Api/WinnerController.php:159
  * @route '/api/v1/judge/winners/{winner}'
  */
-        destroyForm.delete = (args: { winner: number | { id: number } } | [winner: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { winner: string | number | { id: string | number } } | [winner: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',

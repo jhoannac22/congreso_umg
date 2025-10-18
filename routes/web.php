@@ -36,8 +36,12 @@ Route::get('/confirmation', function () {
 })->name('confirmation');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('AdminDashboard');
 })->name('dashboard');
+
+Route::get('/admin/dashboard', function () {
+    return Inertia::render('AdminDashboard');
+})->name('admin.dashboard');
 
 Route::get('/verify-email', function () {
     return Inertia::render('EmailVerification');
@@ -76,3 +80,19 @@ Route::get('/winners', function () {
         'years' => $years
     ]);
 })->name('winners');
+
+Route::get('/my-diplomas', function () {
+    return Inertia::render('MyDiplomas');
+})->name('my-diplomas');
+
+Route::get('/admin/diplomas', function () {
+    return Inertia::render('AdminDiplomas');
+})->name('admin.diplomas');
+
+Route::get('/admin/attendance', function () {
+    return Inertia::render('AdminAttendance');
+})->name('admin.attendance');
+
+Route::get('/admin/winners', function () {
+    return Inertia::render('AdminWinners');
+})->name('admin.winners');

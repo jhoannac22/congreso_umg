@@ -56,7 +56,7 @@ register.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     register.form = registerForm
 /**
 * @see \App\Http\Controllers\Api\AuthController::login
- * @see app/Http/Controllers/Api/AuthController.php:114
+ * @see app/Http/Controllers/Api/AuthController.php:150
  * @route '/api/v1/login'
  */
 export const login = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -71,7 +71,7 @@ login.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::login
- * @see app/Http/Controllers/Api/AuthController.php:114
+ * @see app/Http/Controllers/Api/AuthController.php:150
  * @route '/api/v1/login'
  */
 login.url = (options?: RouteQueryOptions) => {
@@ -80,7 +80,7 @@ login.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::login
- * @see app/Http/Controllers/Api/AuthController.php:114
+ * @see app/Http/Controllers/Api/AuthController.php:150
  * @route '/api/v1/login'
  */
 login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -90,7 +90,7 @@ login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AuthController::login
- * @see app/Http/Controllers/Api/AuthController.php:114
+ * @see app/Http/Controllers/Api/AuthController.php:150
  * @route '/api/v1/login'
  */
     const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -100,7 +100,7 @@ login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AuthController::login
- * @see app/Http/Controllers/Api/AuthController.php:114
+ * @see app/Http/Controllers/Api/AuthController.php:150
  * @route '/api/v1/login'
  */
         loginForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -111,7 +111,7 @@ login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     login.form = loginForm
 /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
 export const me = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -126,7 +126,7 @@ me.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
 me.url = (options?: RouteQueryOptions) => {
@@ -135,7 +135,7 @@ me.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
 me.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -144,7 +144,7 @@ me.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
 me.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -154,7 +154,7 @@ me.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
     const meForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -164,7 +164,7 @@ me.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
         meForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -173,7 +173,7 @@ me.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\Api\AuthController::me
- * @see app/Http/Controllers/Api/AuthController.php:155
+ * @see app/Http/Controllers/Api/AuthController.php:198
  * @route '/api/v1/me'
  */
         meForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -189,7 +189,7 @@ me.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     me.form = meForm
 /**
 * @see \App\Http\Controllers\Api\AuthController::logout
- * @see app/Http/Controllers/Api/AuthController.php:143
+ * @see app/Http/Controllers/Api/AuthController.php:186
  * @route '/api/v1/logout'
  */
 export const logout = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -204,7 +204,7 @@ logout.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::logout
- * @see app/Http/Controllers/Api/AuthController.php:143
+ * @see app/Http/Controllers/Api/AuthController.php:186
  * @route '/api/v1/logout'
  */
 logout.url = (options?: RouteQueryOptions) => {
@@ -213,7 +213,7 @@ logout.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::logout
- * @see app/Http/Controllers/Api/AuthController.php:143
+ * @see app/Http/Controllers/Api/AuthController.php:186
  * @route '/api/v1/logout'
  */
 logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -223,7 +223,7 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AuthController::logout
- * @see app/Http/Controllers/Api/AuthController.php:143
+ * @see app/Http/Controllers/Api/AuthController.php:186
  * @route '/api/v1/logout'
  */
     const logoutForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -233,7 +233,7 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AuthController::logout
- * @see app/Http/Controllers/Api/AuthController.php:143
+ * @see app/Http/Controllers/Api/AuthController.php:186
  * @route '/api/v1/logout'
  */
         logoutForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -244,7 +244,7 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     logout.form = logoutForm
 /**
 * @see \App\Http\Controllers\Api\AuthController::refresh
- * @see app/Http/Controllers/Api/AuthController.php:165
+ * @see app/Http/Controllers/Api/AuthController.php:208
  * @route '/api/v1/refresh'
  */
 export const refresh = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -259,7 +259,7 @@ refresh.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::refresh
- * @see app/Http/Controllers/Api/AuthController.php:165
+ * @see app/Http/Controllers/Api/AuthController.php:208
  * @route '/api/v1/refresh'
  */
 refresh.url = (options?: RouteQueryOptions) => {
@@ -268,7 +268,7 @@ refresh.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AuthController::refresh
- * @see app/Http/Controllers/Api/AuthController.php:165
+ * @see app/Http/Controllers/Api/AuthController.php:208
  * @route '/api/v1/refresh'
  */
 refresh.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -278,7 +278,7 @@ refresh.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AuthController::refresh
- * @see app/Http/Controllers/Api/AuthController.php:165
+ * @see app/Http/Controllers/Api/AuthController.php:208
  * @route '/api/v1/refresh'
  */
     const refreshForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -288,7 +288,7 @@ refresh.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AuthController::refresh
- * @see app/Http/Controllers/Api/AuthController.php:165
+ * @see app/Http/Controllers/Api/AuthController.php:208
  * @route '/api/v1/refresh'
  */
         refreshForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

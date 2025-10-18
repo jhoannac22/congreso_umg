@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::index
- * @see app/Http/Controllers/Api/DiplomaController.php:19
+ * @see app/Http/Controllers/Api/DiplomaController.php:23
  * @route '/api/v1/diplomas'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::store
- * @see app/Http/Controllers/Api/DiplomaController.php:66
+ * @see app/Http/Controllers/Api/DiplomaController.php:70
  * @route '/api/v1/diplomas'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -94,7 +94,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::store
- * @see app/Http/Controllers/Api/DiplomaController.php:66
+ * @see app/Http/Controllers/Api/DiplomaController.php:70
  * @route '/api/v1/diplomas'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::store
- * @see app/Http/Controllers/Api/DiplomaController.php:66
+ * @see app/Http/Controllers/Api/DiplomaController.php:70
  * @route '/api/v1/diplomas'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -113,7 +113,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\DiplomaController::store
- * @see app/Http/Controllers/Api/DiplomaController.php:66
+ * @see app/Http/Controllers/Api/DiplomaController.php:70
  * @route '/api/v1/diplomas'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::store
- * @see app/Http/Controllers/Api/DiplomaController.php:66
+ * @see app/Http/Controllers/Api/DiplomaController.php:70
  * @route '/api/v1/diplomas'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -134,10 +134,10 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-export const show = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -149,10 +149,10 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-show.url = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show.url = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { diploma: args }
     }
@@ -182,48 +182,48 @@ show.url = (args: { diploma: number | { id: number } } | [diploma: number | { id
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-show.get = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-show.head = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
 
     /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-    const showForm = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showForm = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show.url(args, options),
         method: 'get',
     })
 
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-        showForm.get = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.get = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, options),
             method: 'get',
         })
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::show
- * @see app/Http/Controllers/Api/DiplomaController.php:112
+ * @see app/Http/Controllers/Api/DiplomaController.php:116
  * @route '/api/v1/diplomas/{diploma}'
  */
-        showForm.head = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.head = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -236,10 +236,10 @@ show.head = (args: { diploma: number | { id: number } } | [diploma: number | { i
     show.form = showForm
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-export const update = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -251,10 +251,10 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-update.url = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { diploma: args }
     }
@@ -284,29 +284,29 @@ update.url = (args: { diploma: number | { id: number } } | [diploma: number | { 
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-update.put = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-update.patch = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
 
     /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-    const updateForm = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -318,10 +318,10 @@ update.patch = (args: { diploma: number | { id: number } } | [diploma: number | 
 
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-        updateForm.put = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -332,10 +332,10 @@ update.patch = (args: { diploma: number | { id: number } } | [diploma: number | 
         })
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::update
- * @see app/Http/Controllers/Api/DiplomaController.php:125
+ * @see app/Http/Controllers/Api/DiplomaController.php:129
  * @route '/api/v1/diplomas/{diploma}'
  */
-        updateForm.patch = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -348,10 +348,10 @@ update.patch = (args: { diploma: number | { id: number } } | [diploma: number | 
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::destroy
- * @see app/Http/Controllers/Api/DiplomaController.php:150
+ * @see app/Http/Controllers/Api/DiplomaController.php:154
  * @route '/api/v1/diplomas/{diploma}'
  */
-export const destroy = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -363,10 +363,10 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::destroy
- * @see app/Http/Controllers/Api/DiplomaController.php:150
+ * @see app/Http/Controllers/Api/DiplomaController.php:154
  * @route '/api/v1/diplomas/{diploma}'
  */
-destroy.url = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { diploma: args }
     }
@@ -396,20 +396,20 @@ destroy.url = (args: { diploma: number | { id: number } } | [diploma: number | {
 
 /**
 * @see \App\Http\Controllers\Api\DiplomaController::destroy
- * @see app/Http/Controllers/Api/DiplomaController.php:150
+ * @see app/Http/Controllers/Api/DiplomaController.php:154
  * @route '/api/v1/diplomas/{diploma}'
  */
-destroy.delete = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
     /**
 * @see \App\Http\Controllers\Api\DiplomaController::destroy
- * @see app/Http/Controllers/Api/DiplomaController.php:150
+ * @see app/Http/Controllers/Api/DiplomaController.php:154
  * @route '/api/v1/diplomas/{diploma}'
  */
-    const destroyForm = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -421,10 +421,10 @@ destroy.delete = (args: { diploma: number | { id: number } } | [diploma: number 
 
             /**
 * @see \App\Http\Controllers\Api\DiplomaController::destroy
- * @see app/Http/Controllers/Api/DiplomaController.php:150
+ * @see app/Http/Controllers/Api/DiplomaController.php:154
  * @route '/api/v1/diplomas/{diploma}'
  */
-        destroyForm.delete = (args: { diploma: number | { id: number } } | [diploma: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { diploma: string | number | { id: string | number } } | [diploma: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',

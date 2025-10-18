@@ -281,13 +281,13 @@ export default function Winners({ winners = [], years = [] }: WinnersProps) {
                                                             {/* Participant Info */}
                                                             <div className="flex items-center gap-3 text-gray-600">
                                                                 <div className="w-10 h-10 bg-gradient-to-br from-[#1E5A96] to-[#2C7CC1] rounded-full flex items-center justify-center text-white font-bold">
-                                                                    {winner.participant.name.charAt(0).toUpperCase()}
+                                                                    {winner.participant?.name?.charAt(0)?.toUpperCase() || '?'}
                                                                 </div>
                                                                 <div>
                                                                     <div className="font-semibold text-gray-800">
-                                                                        {winner.participant.name}
+                                                                        {winner.participant?.name || 'Participante no disponible'}
                                                                     </div>
-                                                                    {winner.participant.institution && (
+                                                                    {winner.participant?.institution && (
                                                                         <div className="text-sm text-gray-500">
                                                                             {winner.participant.institution}
                                                                         </div>

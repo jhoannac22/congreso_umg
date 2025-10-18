@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::index
- * @see app/Http/Controllers/Api/AttendanceController.php:29
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:71
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -94,7 +94,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:71
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 store.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:71
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -113,7 +113,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:71
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
     const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::store
- * @see app/Http/Controllers/Api/AttendanceController.php:71
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances'
  */
         storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -134,10 +134,10 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-export const show = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -149,17 +149,14 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-show.url = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show.url = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
 
-            if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
-            args = { attendance: args.id }
-        }
     
     if (Array.isArray(args)) {
         args = {
@@ -170,9 +167,7 @@ show.url = (args: { attendance: number | { id: number } } | [attendance: number 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-                        attendance: typeof args.attendance === 'object'
-                ? args.attendance.id
-                : args.attendance,
+                        attendance: args.attendance,
                 }
 
     return show.definition.url
@@ -182,48 +177,48 @@ show.url = (args: { attendance: number | { id: number } } | [attendance: number 
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-show.get = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-show.head = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-    const showForm = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    const showForm = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: show.url(args, options),
         method: 'get',
     })
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-        showForm.get = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.get = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, options),
             method: 'get',
         })
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::show
- * @see app/Http/Controllers/Api/AttendanceController.php:99
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-        showForm.head = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        showForm.head = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: show.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'HEAD',
@@ -236,10 +231,10 @@ show.head = (args: { attendance: number | { id: number } } | [attendance: number
     show.form = showForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-export const update = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -251,17 +246,14 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-update.url = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+update.url = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
 
-            if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
-            args = { attendance: args.id }
-        }
     
     if (Array.isArray(args)) {
         args = {
@@ -272,9 +264,7 @@ update.url = (args: { attendance: number | { id: number } } | [attendance: numbe
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-                        attendance: typeof args.attendance === 'object'
-                ? args.attendance.id
-                : args.attendance,
+                        attendance: args.attendance,
                 }
 
     return update.definition.url
@@ -284,29 +274,29 @@ update.url = (args: { attendance: number | { id: number } } | [attendance: numbe
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-update.put = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-update.patch = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-    const updateForm = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const updateForm = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'PUT',
@@ -318,10 +308,10 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-        updateForm.put = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.put = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PUT',
@@ -332,10 +322,10 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
         })
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::update
- * @see app/Http/Controllers/Api/AttendanceController.php:112
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-        updateForm.patch = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        updateForm.patch = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'PATCH',
@@ -348,10 +338,10 @@ update.patch = (args: { attendance: number | { id: number } } | [attendance: num
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:129
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-export const destroy = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -363,17 +353,14 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:129
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-destroy.url = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
 
-            if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
-            args = { attendance: args.id }
-        }
     
     if (Array.isArray(args)) {
         args = {
@@ -384,9 +371,7 @@ destroy.url = (args: { attendance: number | { id: number } } | [attendance: numb
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-                        attendance: typeof args.attendance === 'object'
-                ? args.attendance.id
-                : args.attendance,
+                        attendance: args.attendance,
                 }
 
     return destroy.definition.url
@@ -396,20 +381,20 @@ destroy.url = (args: { attendance: number | { id: number } } | [attendance: numb
 
 /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:129
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-destroy.delete = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
     /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:129
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-    const destroyForm = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    const destroyForm = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: destroy.url(args, {
                     [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                         _method: 'DELETE',
@@ -421,10 +406,10 @@ destroy.delete = (args: { attendance: number | { id: number } } | [attendance: n
 
             /**
 * @see \App\Http\Controllers\Api\AttendanceController::destroy
- * @see app/Http/Controllers/Api/AttendanceController.php:129
+ * @see app/Http/Controllers/Api/AttendanceController.php:0
  * @route '/api/v1/attendances/{attendance}'
  */
-        destroyForm.delete = (args: { attendance: number | { id: number } } | [attendance: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+        destroyForm.delete = (args: { attendance: string | number } | [attendance: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: destroy.url(args, {
                         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
                             _method: 'DELETE',
